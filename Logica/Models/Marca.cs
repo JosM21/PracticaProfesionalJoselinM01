@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica.Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -19,83 +20,162 @@ namespace Logica.Models
 
             Services.Conexion MiCnn = new Services.Conexion();
 
-            R = MiCnn.EjecutarSELECT("SPUsuarioRolListar");
+            R = MiCnn.EjecutarSELECT("SPMarcaListarCombo");
 
             return R;
 
         }
 
 
-        //public bool Agregar()
-        //{
+        public DataTable ListarActivos()
+        {
+            DataTable R = new DataTable();
 
-        //    bool R = false;
+            Conexion MiCnn = new Conexion();
 
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", true));
+            // MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
-        //    Conexion MiCnn = new Conexion();
+            R = MiCnn.EjecutarSELECT("SPMarcaListar");
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Correo", this.Correo));
+            return R;
+        }
 
-        //    Crypto MiEncriptador = new Crypto();
-        //    string ContrasenniaEncriptada = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", ContrasenniaEncriptada));
+        public DataTable ListarInactivos()
+        {
+            DataTable R = new DataTable();
+            Conexion MiCnn = new Conexion();
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Nombre", this.Nombre));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Cedula", this.Cedula));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Telefono", this.Telefono));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Direccion", this.Direccion));
-
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@IdRol", this.MiRolTipo.IDRol));
-
-
-        //    int resultado = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioAgregar");
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", false));
+            // MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
 
-        //    if (resultado > 0)
-        //    {
-        //        R = true;
+            R = MiCnn.EjecutarSELECT("SPMarcaListar");
 
-        //    }
+            return R;
 
-        //        return R;
-        //    }
+        }
 
-        //}
+        public bool ConsultarPorID()
+        {
+            bool R = false;
 
-        //public bool Editar()
-        //{
-        //    bool R = false;
+            Conexion MiCnn = new Conexion();
 
-        //    Conexion MiCnn = new Conexion();
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdMarca));
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Correo", this.Correo));
+            //necesito un datatable para capturar la info del usuario 
+            DataTable dt = new DataTable();
 
-        //    //Encriptar la contraseña
-        //    Crypto MiEncriptador = new Crypto();
-        //    string ContrasenniaEncriptada = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", ContrasenniaEncriptada));
+            dt = MiCnn.EjecutarSELECT("SPMarcaConsultarPorID");
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                R = true;
+            }
+
+            return R;
+        }
+
+        public Marca ConsultarPorIDRetornaMarca()
+        {
+            Marca R = new Marca();
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdMarca));
+
+            DataTable dt = new DataTable();
+
+            dt = MiCnn.EjecutarSELECT("SPMarcaConsultarPorID");
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+
+                DataRow dr = dt.Rows[0];
+
+                R.IdMarca = Convert.ToInt32(dr["idMarca"]);
+                R.DescripcionMarca = Convert.ToString(dr["descripcionMarca"]);
 
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Nombre", this.Nombre));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Cedula", this.Cedula));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Telefono", this.Telefono));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Direccion", this.Direccion));
 
-        //    //normalmente los foreign keys tienen que ver con composiciones, en este caso 
-        //    //tenemos que extraer el valor del objeto compuesto 'MiRolTipo'
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@IdRol", this.MiRolTipo.IDRol));
+            }
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
 
-        //    int resultado = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioModificar");
+            return R;
+        }
 
-        //    if (resultado > 0)
-        //    {
-        //        R = true;
-        //    }
 
-        //    return R;
-        //}
+
+        public bool ConsultarPorDescripcion()
+        {
+            bool R = false;
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@descripcion", this.DescripcionMarca));
+
+            //necesito un datatable para capturar la info del usuario 
+            DataTable dt = new DataTable();
+
+            dt = MiCnn.EjecutarSELECT("SPMarcaConsultarPorNombre");
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                R = true;
+            }
+
+            return R;
+        }
+
+
+        public bool Agregar()
+        {
+
+            bool R = false;
+
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@descripcion", this.DescripcionMarca));
+
+
+            int resultado = MiCnn.EjecutarInsertUpdateDelete("SPMarcaAgregar");
+
+
+            if (resultado > 0)
+            {
+                R = true;
+            }
+
+            return R;
+        }
+
+
+        public bool Modificar()
+        {
+
+            bool R = false;
+
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@descripcion", this.DescripcionMarca));
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@idCategoria", this.IdMarca));
+
+
+            int resultado = MiCnn.EjecutarInsertUpdateDelete("SPMarcaModificar");
+
+
+            if (resultado > 0)
+            {
+                R = true;
+            }
+
+            return R;
+
+        }
 
         //public bool Eliminar()
         //{
@@ -133,60 +213,8 @@ namespace Logica.Models
         //    return R;
         //}
 
-        //public bool ConsultarPorID()
-        //{
-        //    bool R = false;
-
-        //    Conexion MiCnn = new Conexion();
-
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
-
-        //    //necesito un datatable para capturar la info del usuario 
-        //    DataTable dt = new DataTable();
-
-        //    dt = MiCnn.EjecutarSELECT("SPUsuarioConsultarPorID");
-
-        //    if (dt != null && dt.Rows.Count > 0)
-        //    {
-        //        R = true;
-        //    }
-
-        //    return R;
-        //}
 
 
-        //public DataTable ListarActivos(string pFiltroBusqueda)
-        //{
-        //    DataTable R = new DataTable();
 
-        //    Conexion MiCnn = new Conexion();
-
-        //    //en este caso como el SP tiene un parámetro, debemos por lo tanto definir ese parámetro 
-        //    //en la lista de parámetros del objeto de conexion 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", true));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
-
-        //    R = MiCnn.EjecutarSELECT("SPUsuarioListar");
-
-        //    return R;
-        //}
-
-        //public DataTable ListarInactivos(string pFiltroBusqueda)
-        //{
-        //    DataTable R = new DataTable();
-        //    Conexion MiCnn = new Conexion();
-
-        //    //en este caso como el SP tiene un parámetro, debemos por lo tanto definir ese parámetro 
-        //    //en la lista de parámetros del objeto de conexion 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", false));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
-
-
-        //    R = MiCnn.EjecutarSELECT("SPUsuarioListar");
-
-        //    return R;
-
-        }
-
-    
+    }
 }

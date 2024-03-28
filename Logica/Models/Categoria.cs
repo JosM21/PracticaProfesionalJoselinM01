@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica.Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,9 +18,9 @@ namespace Logica.Models
         {
             DataTable R = new DataTable();
 
-            // Services.Conexion MiCnn = new Services.Conexion();
+            Services.Conexion MiCnn = new Services.Conexion();
 
-            //  R = MiCnn.EjecutarSELECT("SPUsuarioRolListar");
+            R = MiCnn.EjecutarSELECT("SPCategoriaListarCombo");
 
             return R;
 
@@ -27,131 +28,155 @@ namespace Logica.Models
         }
 
 
-    //    public bool Agregar()
-    //    {
+        public DataTable ListarActivos()
+        {
+            DataTable R = new DataTable();
 
-    //        bool R = false;
-
-
-    //        Conexion MiCnn = new Conexion();
-
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Correo", this.Correo));
-
-    //        Crypto MiEncriptador = new Crypto();
-    //        string ContrasenniaEncriptada = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", ContrasenniaEncriptada));
-
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Nombre", this.Nombre));
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Cedula", this.Cedula));
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Telefono", this.Telefono));
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Direccion", this.Direccion));
-
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@IdRol", this.MiRolTipo.IDRol));
+            Conexion MiCnn = new Conexion();
 
 
-    //        int resultado = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioAgregar");
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", true));
+            //MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
+
+            R = MiCnn.EjecutarSELECT("SPCategoriaListar");
+
+            return R;
+        }
+
+        public DataTable ListarInactivos()
+        {
+            DataTable R = new DataTable();
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", false));
+            // MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
 
-    //        if (resultado > 0)
-    //        {
-    //        R = true;
-    //        }
+            R = MiCnn.EjecutarSELECT("SPCategoriaListar");
 
-    //        return R;
-    //    }
+            return R;
+        }
 
+        public bool ConsultarPorID()
+        {
+            bool R = false;
 
-    //    public bool Editar()
-    //    {
-    //        bool R = false;
+            Conexion MiCnn = new Conexion();
 
-    //        Conexion MiCnn = new Conexion();
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdCategoria));
 
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Correo", this.Correo));
+            //necesito un datatable para capturar la info del usuario 
+            DataTable dt = new DataTable();
 
-    //        //Encriptar la contraseña
-    //        Crypto MiEncriptador = new Crypto();
-    //        string ContrasenniaEncriptada = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", ContrasenniaEncriptada));
+            dt = MiCnn.EjecutarSELECT("SPCategoriaConsultarPorID");
 
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                R = true;
+            }
 
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Nombre", this.Nombre));
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Cedula", this.Cedula));
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Telefono", this.Telefono));
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@Direccion", this.Direccion));
+            return R;
+        }
 
-    //        //normalmente los foreign keys tienen que ver con composiciones, en este caso 
-    //        //tenemos que extraer el valor del objeto compuesto 'MiRolTipo'
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@IdRol", this.MiRolTipo.IDRol));
+        public Categoria ConsultarPorIDRetornaCategoria()
+        {
+            Categoria R = new Categoria();
 
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
+            Conexion MiCnn = new Conexion();
 
-    //        int resultado = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioModificar");
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdCategoria));
 
-    //        if (resultado > 0)
-    //        {
-    //            R = true;
-    //        }
+            DataTable dt = new DataTable();
 
-    //        return R;
-    //    }
+            dt = MiCnn.EjecutarSELECT("SPCategoriaConsultarPorID");
 
-    //    public bool Eliminar()
-    //    {
-    //        bool R = false;
+            if (dt != null && dt.Rows.Count > 0)
+            {
 
-    //        //Conexion MiCnn = new Conexion();
+                DataRow dr = dt.Rows[0];
 
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
-
-    //        int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioDesactivar");
-
-    //        if (respuesta > 0)
-    //        {
-    //            R = true;
-    //        }
-
-    //        return R;
-    //    }
-
-    //    public bool Activar()
-    //    {
-    //        bool R = false;
+                R.IdCategoria = Convert.ToInt32(dr["idCategoria"]);
+                R.DescripcionCategoria = Convert.ToString(dr["descripcionCategoria"]);
 
 
-    //        Conexion MiCnn = new Conexion();
 
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
+            }
 
-    //        int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioActivar");
 
-    //        if (respuesta > 0)
-    //        {
-    //            R = true;
-    //        }
-    //        return R;
-    //    }
+            return R;
+        }
 
-    //    public bool ConsultarPorID()
-    //    {
-    //        bool R = false;
+        public bool ConsultarPorDescripcion()
+        {
+            bool R = false;
 
-    //        Conexion MiCnn = new Conexion();
+            Conexion MiCnn = new Conexion();
 
-    //        MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@descripcion", this.DescripcionCategoria));
 
-    //        //necesito un datatable para capturar la info del usuario 
-    //        DataTable dt = new DataTable();
+            //necesito un datatable para capturar la info del usuario 
+            DataTable dt = new DataTable();
 
-    //        dt = MiCnn.EjecutarSELECT("SPUsuarioConsultarPorID");
+            dt = MiCnn.EjecutarSELECT("SPCategoriaConsultarPorNombre");
 
-    //        if (dt != null && dt.Rows.Count > 0)
-    //        {
-    //            R = true;
-    //        }
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                R = true;
+            }
 
-    //        return R;
-    //    }
+            return R;
+        }
+
+
+        public bool Agregar()
+        {
+
+            bool R = false;
+
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@descripcion", this.DescripcionCategoria));
+
+
+            int resultado = MiCnn.EjecutarInsertUpdateDelete("SPCategoriaAgregar");
+
+
+            if (resultado > 0)
+            {
+                R = true;
+            }
+
+            return R;
+        }
+
+
+        public bool Modificar()
+        {
+
+            bool R = false;
+
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@descripcion", this.DescripcionCategoria));
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@idCategoria", this.IdCategoria));
+
+
+            int resultado = MiCnn.EjecutarInsertUpdateDelete("SPCategoriaModificar");
+
+
+            if (resultado > 0)
+            {
+                R = true;
+            }
+
+            return R;
+
+        }
+
+
 
     }
 }

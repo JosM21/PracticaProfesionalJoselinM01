@@ -24,6 +24,64 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         }
 
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Globales.MiFormUsuarios.Visible) 
+            {
+                Globales.MiFormUsuarios = new FrmUsuario();
+                Globales.MiFormUsuarios.Show();
+            
+            }
+        }
 
+        private void ProductosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (!Globales.MiFormProducto.Visible)
+            {
+                Globales.MiFormProducto = new FrmProducto();
+                Globales.MiFormProducto.Show();
+
+            }
+
+        }
+
+        private void ProovedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (!Globales.MiFormProveedor.Visible)
+            {
+                Globales.MiFormProveedor = new FrmProveedor();
+                Globales.MiFormProveedor.Show();
+
+            }
+
+        }
+
+        private void CategoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (!Globales.MiFormCategoria.Visible)
+            {
+                Globales.MiFormCategoria = new FrmCategoria();
+                Globales.MiFormCategoria.Show();
+
+            }
+
+
+        }
+
+        private void MarcasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (!Globales.MiFormMarca.Visible)
+            {
+                Globales.MiFormMarca = new FrmMarca();
+                Globales.MiFormMarca.Show();
+
+            }
+
+
+        }
     }
 }
