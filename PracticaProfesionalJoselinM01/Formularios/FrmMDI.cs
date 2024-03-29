@@ -83,5 +83,29 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
 
         }
+
+        private void FrmMDI_Load(object sender, EventArgs e)
+        {
+
+            string InfoUsuario = string.Format("{0}-{1} ({2})", Globales.MiUsuarioGlobal.Nombre,
+                                                                Globales.MiUsuarioGlobal.Email,
+                                                                Globales.MiUsuarioGlobal.MiRolTipo.TipoUsuarioRol);
+            LblUsuario.Text = InfoUsuario;
+
+
+
+            LblUsuario.Text = InfoUsuario;
+
+            switch (Globales.MiUsuarioGlobal.MiRolTipo.IdUsuarioRol)
+            {
+                case 1:
+                    break;
+                case 2:
+                    usuariosToolStripMenuItem.Visible = false;
+                    reportesToolStripMenuItem.Visible = false;
+
+                    break;
+            }
+        }
     }
 }

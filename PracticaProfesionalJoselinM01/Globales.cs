@@ -1,4 +1,5 @@
 ﻿
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 
 namespace PracticaProfesionalJoselinM01
@@ -16,6 +17,9 @@ namespace PracticaProfesionalJoselinM01
 
         public static Formularios.FrmCategoria MiFormCategoria = new Formularios.FrmCategoria();
 
-        public static Formularios.FrmMarca MiFormMarca = new Formularios.FrmMarca();    
+        public static Formularios.FrmMarca MiFormMarca = new Formularios.FrmMarca();
+
+
+        public static Logica.Models.Usuario MiUsuarioGlobal = new Logica.Models.Usuario(); 
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CbProveedor = new System.Windows.Forms.ComboBox();
             this.CbMarca = new System.Windows.Forms.ComboBox();
@@ -118,6 +118,7 @@
             this.TxtProductoNombre.Name = "TxtProductoNombre";
             this.TxtProductoNombre.Size = new System.Drawing.Size(371, 27);
             this.TxtProductoNombre.TabIndex = 9;
+            this.TxtProductoNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProductoNombre_KeyPress);
             // 
             // TxtProductoID
             // 
@@ -187,6 +188,7 @@
             this.BtnCancelar.TabIndex = 34;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = false;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnLimpiar
             // 
@@ -214,6 +216,7 @@
             this.BtnEliminar.TabIndex = 32;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnModificar
             // 
@@ -227,6 +230,7 @@
             this.BtnModificar.TabIndex = 31;
             this.BtnModificar.Text = "Modificar";
             this.BtnModificar.UseVisualStyleBackColor = false;
+            this.BtnModificar.Click += new System.EventHandler(this.BtnModificar_Click);
             // 
             // BtnAgregar
             // 
@@ -247,14 +251,14 @@
             this.DgLista.AllowUserToAddRows = false;
             this.DgLista.AllowUserToDeleteRows = false;
             this.DgLista.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DgLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CidProducto,
@@ -334,6 +338,7 @@
             this.CBoxVerActivos.TabIndex = 28;
             this.CBoxVerActivos.Text = "Ver Activos";
             this.CBoxVerActivos.UseVisualStyleBackColor = true;
+            this.CBoxVerActivos.CheckedChanged += new System.EventHandler(this.CBoxVerActivos_CheckedChanged);
             // 
             // TxtBuscar
             // 
@@ -342,6 +347,7 @@
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(852, 27);
             this.TxtBuscar.TabIndex = 27;
+            this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
             // label1
             // 

@@ -50,13 +50,22 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             ListaUsuario = new DataTable();
 
+
+            string FiltroBusqueda = "";
+            if (!string.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 3)
+            {
+                FiltroBusqueda = TxtBuscar.Text.Trim();
+            }
+
+
+
             if (CBoxVerActivos.Checked)
             {
-                ListaUsuario = MiUsuarioLocal.ListarActivos();
+                ListaUsuario = MiUsuarioLocal.ListarActivos(FiltroBusqueda);
             }
             else
             {
-                ListaUsuario = MiUsuarioLocal.ListarInactivos();
+                ListaUsuario = MiUsuarioLocal.ListarInactivos(FiltroBusqueda);
             }
 
             DgLista.DataSource = ListaUsuario;
@@ -378,6 +387,124 @@ namespace PracticaProfesionalJoselinM01.Formularios
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
 
+            if (MiUsuarioLocal.IdUsuario > 0 && MiUsuarioLocal.ConsultarPorID())
+            {
+
+                if (CBoxVerActivos.Checked)
+                {
+                    DialogResult r = MessageBox.Show("¿Desea eliminar el usuario?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (r == DialogResult.Yes)
+                    {
+
+                        if (MiUsuarioLocal.Eliminar())
+                        {
+                            MessageBox.Show("El usuario ha sido eliminado correctamente !", "!!", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaUsuarios();
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    DialogResult r = MessageBox.Show("¿Está seguro que desea activar el usuario?", "???", MessageBoxButtons.YesNo
+                       , MessageBoxIcon.Question);
+                    if (r == DialogResult.Yes)
+                    {
+                        if (MiUsuarioLocal.Activar())
+                        {
+                            MessageBox.Show("El usuario ha sido activado satisfactoriamente", ":)", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaUsuarios();
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+        private void TxtUsuarioNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+
+        }
+
+        private void TxtUsuarioCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresNumeros(e, true);
+
+        }
+
+        private void TxtUsuarioTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+
+        }
+
+        private void TxtUsuarioCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e,false,true);
+
+        }
+
+        private void TxtUsuarioContrasennia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            e.Handled = Validaciones.CaracteresTexto(e);
+
+        }
+
+        private void TxtUsuarioDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+
+        }
+
+        private void TxtUsuarioCorreo_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtUsuarioCorreo.Text.Trim()))
+            {
+                if (!Validaciones.ValidarEmail(TxtUsuarioCorreo.Text.Trim()))
+                {
+                    MessageBox.Show("El formato del correo electronico es incorrecto", "Error de validacion", MessageBoxButtons.OK);
+                    TxtUsuarioCorreo.Focus();
+
+                }
+
+            }
+        }
+
+        private void CBoxVerActivos_CheckedChanged(object sender, EventArgs e)
+        {
+
+            CargarListaUsuarios();
+
+            if (CBoxVerActivos.Checked)
+            {
+                BtnEliminar.Text = "Eliminar";
+            }
+            else
+            {
+                BtnEliminar.Text = "Activar";
+            }
+
+
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarListaUsuarios();
         }
     }
 

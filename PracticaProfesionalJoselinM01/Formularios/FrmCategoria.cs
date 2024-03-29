@@ -38,13 +38,22 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             ListarCategoria = new DataTable();
 
+
+            string FiltroBusqueda = "";
+            if (!string.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 3)
+            {
+                FiltroBusqueda = TxtBuscar.Text.Trim();
+            }
+
+
+
             if (CBoxVerActivos.Checked)
             {
-                ListarCategoria = MiCategoriaLocal.ListarActivos();
+                ListarCategoria = MiCategoriaLocal.ListarActivos(FiltroBusqueda);
             }
             else
             {
-                ListarCategoria = MiCategoriaLocal.ListarInactivos();
+                ListarCategoria = MiCategoriaLocal.ListarInactivos(FiltroBusqueda);
             }
 
             DgLista.DataSource = ListarCategoria;
@@ -243,6 +252,81 @@ namespace PracticaProfesionalJoselinM01.Formularios
                 }
 
             }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+
+            if (MiCategoriaLocal.IdCategoria > 0 && MiCategoriaLocal.ConsultarPorID())
+            {
+
+                if (CBoxVerActivos.Checked)
+                {
+                    DialogResult r = MessageBox.Show("¿Desea eliminar la categoria?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (r == DialogResult.Yes)
+                    {
+
+                        if (MiCategoriaLocal.Eliminar())
+                        {
+                            MessageBox.Show("La categoria ha sido eliminado correctamente !", "!!", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaCategorias();
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    DialogResult r = MessageBox.Show("¿Está seguro que desea activar la categoria?", "???", MessageBoxButtons.YesNo
+                       , MessageBoxIcon.Question);
+                    if (r == DialogResult.Yes)
+                    {
+                        if (MiCategoriaLocal.Activar())
+                        {
+                            MessageBox.Show("La categoria ha sido activada satisfactoriamente", ":)", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaCategorias();
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+        }
+
+        private void CBoxVerActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarListaCategorias();
+
+            if (CBoxVerActivos.Checked)
+            {
+                BtnEliminar.Text = "Eliminar";
+            }
+            else
+            {
+                BtnEliminar.Text = "Activar";
+            }
+
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarListaCategorias();
         }
     }
 }

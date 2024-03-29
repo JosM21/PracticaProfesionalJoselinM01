@@ -101,6 +101,7 @@
             this.BtnCancelar.TabIndex = 19;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = false;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnLimpiar
             // 
@@ -128,6 +129,7 @@
             this.BtnEliminar.TabIndex = 17;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnModificar
             // 
@@ -179,6 +181,7 @@
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(187, 27);
             this.TxtDescripcion.TabIndex = 3;
+            this.TxtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDescripcion_KeyPress);
             // 
             // TtxtMarcaID
             // 
@@ -222,6 +225,7 @@
             this.CBoxVerActivos.TabIndex = 23;
             this.CBoxVerActivos.Text = "Ver Activos";
             this.CBoxVerActivos.UseVisualStyleBackColor = true;
+            this.CBoxVerActivos.CheckedChanged += new System.EventHandler(this.CBoxVerActivos_CheckedChanged);
             // 
             // TxtBuscar
             // 
@@ -230,6 +234,7 @@
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(297, 27);
             this.TxtBuscar.TabIndex = 22;
+            this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
             // label1
             // 

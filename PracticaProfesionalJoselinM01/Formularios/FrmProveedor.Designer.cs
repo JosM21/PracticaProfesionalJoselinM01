@@ -93,6 +93,7 @@
             this.TxtProveedorDireccion.Size = new System.Drawing.Size(373, 108);
             this.TxtProveedorDireccion.TabIndex = 15;
             this.TxtProveedorDireccion.UseSystemPasswordChar = true;
+            this.TxtProveedorDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProveedorDireccion_KeyPress);
             // 
             // TxtProveedorCorreo
             // 
@@ -102,6 +103,8 @@
             this.TxtProveedorCorreo.Name = "TxtProveedorCorreo";
             this.TxtProveedorCorreo.Size = new System.Drawing.Size(373, 30);
             this.TxtProveedorCorreo.TabIndex = 13;
+            this.TxtProveedorCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProveedorCorreo_KeyPress);
+            this.TxtProveedorCorreo.Leave += new System.EventHandler(this.TxtProveedorCorreo_Leave);
             // 
             // TxtProveedorTelefono
             // 
@@ -111,6 +114,7 @@
             this.TxtProveedorTelefono.Name = "TxtProveedorTelefono";
             this.TxtProveedorTelefono.Size = new System.Drawing.Size(371, 30);
             this.TxtProveedorTelefono.TabIndex = 11;
+            this.TxtProveedorTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProveedorTelefono_KeyPress);
             // 
             // TxtProveedorCedula
             // 
@@ -120,6 +124,7 @@
             this.TxtProveedorCedula.Name = "TxtProveedorCedula";
             this.TxtProveedorCedula.Size = new System.Drawing.Size(371, 30);
             this.TxtProveedorCedula.TabIndex = 10;
+            this.TxtProveedorCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProveedorCedula_KeyPress);
             // 
             // TxtProveedorNombre
             // 
@@ -129,6 +134,7 @@
             this.TxtProveedorNombre.Name = "TxtProveedorNombre";
             this.TxtProveedorNombre.Size = new System.Drawing.Size(371, 30);
             this.TxtProveedorNombre.TabIndex = 9;
+            this.TxtProveedorNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtProveedorNombre_KeyPress);
             // 
             // TxtProveedorID
             // 
@@ -206,6 +212,7 @@
             this.BtnCancelar.TabIndex = 24;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = false;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnLimpiar
             // 
@@ -233,6 +240,7 @@
             this.BtnEliminar.TabIndex = 22;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnModificar
             // 
@@ -246,6 +254,7 @@
             this.BtnModificar.TabIndex = 21;
             this.BtnModificar.Text = "Modificar";
             this.BtnModificar.UseVisualStyleBackColor = false;
+            this.BtnModificar.Click += new System.EventHandler(this.BtnModificar_Click);
             // 
             // BtnAgregar
             // 
@@ -345,6 +354,7 @@
             this.CBoxVerActivos.TabIndex = 18;
             this.CBoxVerActivos.Text = "Ver Activos";
             this.CBoxVerActivos.UseVisualStyleBackColor = true;
+            this.CBoxVerActivos.CheckedChanged += new System.EventHandler(this.CBoxVerActivos_CheckedChanged);
             // 
             // TxtBuscar
             // 
@@ -352,6 +362,7 @@
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(852, 22);
             this.TxtBuscar.TabIndex = 17;
+            this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
             // label1
             // 

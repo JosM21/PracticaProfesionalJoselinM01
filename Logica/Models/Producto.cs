@@ -27,7 +27,7 @@ namespace Logica.Models
             MiProveedor = new Proveedor();  
         }
 
-        public DataTable ListarActivos()
+        public DataTable ListarActivos(string pFiltroBusqueda)
         {
             DataTable R = new DataTable();
 
@@ -35,20 +35,22 @@ namespace Logica.Models
 
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", true));
-            //MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
             R = MiCnn.EjecutarSELECT("SPProductoListar");
 
             return R;
         }
 
-        public DataTable ListarInactivos()
+
+
+        public DataTable ListarInactivos(string pFiltroBusqueda)
         {
             DataTable R = new DataTable();
             Conexion MiCnn = new Conexion();
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", false));
-            // MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
 
             R = MiCnn.EjecutarSELECT("SPProductoListar");
@@ -167,6 +169,85 @@ namespace Logica.Models
 
             return R;
         }
+
+
+        public bool Modificar()
+        {
+
+            bool R = false;
+
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@idProducto", this.IdProducto));
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@nombre", this.Nombre));
+        
+
+            //composiciones
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@categoria", this.MiCategoria.IdCategoria));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@marca", this.MiMarca.IdMarca));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@proveedor", this.MiProveedor.IdProveedor));
+
+
+
+
+            int resultado = MiCnn.EjecutarInsertUpdateDelete("SPProductoModificar");
+
+
+            if (resultado > 0)
+            {
+                R = true;
+            }
+
+            return R;
+
+        }
+
+
+        public bool Eliminar()
+        {
+            bool R = false;
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdProducto));
+
+            int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPProductoDesactivar");
+
+            if (respuesta > 0)
+            {
+
+                R = true;
+
+            }
+
+
+            return R;
+        }
+
+        public bool Activar()
+        {
+            bool R = false;
+
+            Conexion MiCnn = new Conexion();
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdProducto));
+
+            int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPProductoActivar");
+
+            if (respuesta > 0)
+            {
+                R = true;
+            }
+
+
+
+            return R;
+
+        }
+
+
+
 
     }
 

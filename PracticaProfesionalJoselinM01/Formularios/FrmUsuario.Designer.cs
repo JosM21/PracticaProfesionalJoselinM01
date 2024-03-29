@@ -81,6 +81,7 @@
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(840, 22);
             this.TxtBuscar.TabIndex = 1;
+            this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
             // CBoxVerActivos
             // 
@@ -95,6 +96,7 @@
             this.CBoxVerActivos.TabIndex = 2;
             this.CBoxVerActivos.Text = "Ver Activos";
             this.CBoxVerActivos.UseVisualStyleBackColor = true;
+            this.CBoxVerActivos.CheckedChanged += new System.EventHandler(this.CBoxVerActivos_CheckedChanged);
             // 
             // DgLista
             // 
@@ -188,6 +190,7 @@
             this.BtnCancelar.TabIndex = 14;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = false;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnLimpiar
             // 
@@ -296,6 +299,7 @@
             this.TxtUsuarioDireccion.Size = new System.Drawing.Size(373, 35);
             this.TxtUsuarioDireccion.TabIndex = 15;
             this.TxtUsuarioDireccion.UseSystemPasswordChar = true;
+            this.TxtUsuarioDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUsuarioDireccion_KeyPress);
             // 
             // TxtUsuarioContrasennia
             // 
@@ -307,6 +311,7 @@
             this.TxtUsuarioContrasennia.Size = new System.Drawing.Size(373, 27);
             this.TxtUsuarioContrasennia.TabIndex = 14;
             this.TxtUsuarioContrasennia.UseSystemPasswordChar = true;
+            this.TxtUsuarioContrasennia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUsuarioContrasennia_KeyPress);
             // 
             // TxtUsuarioCorreo
             // 
@@ -317,6 +322,8 @@
             this.TxtUsuarioCorreo.Name = "TxtUsuarioCorreo";
             this.TxtUsuarioCorreo.Size = new System.Drawing.Size(373, 27);
             this.TxtUsuarioCorreo.TabIndex = 13;
+            this.TxtUsuarioCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUsuarioCorreo_KeyPress);
+            this.TxtUsuarioCorreo.Leave += new System.EventHandler(this.TxtUsuarioCorreo_Leave);
             // 
             // TxtUsuarioTelefono
             // 
@@ -327,6 +334,7 @@
             this.TxtUsuarioTelefono.Name = "TxtUsuarioTelefono";
             this.TxtUsuarioTelefono.Size = new System.Drawing.Size(371, 27);
             this.TxtUsuarioTelefono.TabIndex = 11;
+            this.TxtUsuarioTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUsuarioTelefono_KeyPress);
             // 
             // TxtUsuarioCedula
             // 
@@ -337,6 +345,7 @@
             this.TxtUsuarioCedula.Name = "TxtUsuarioCedula";
             this.TxtUsuarioCedula.Size = new System.Drawing.Size(371, 27);
             this.TxtUsuarioCedula.TabIndex = 10;
+            this.TxtUsuarioCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUsuarioCedula_KeyPress);
             // 
             // TxtUsuarioNombre
             // 
@@ -347,6 +356,7 @@
             this.TxtUsuarioNombre.Name = "TxtUsuarioNombre";
             this.TxtUsuarioNombre.Size = new System.Drawing.Size(371, 27);
             this.TxtUsuarioNombre.TabIndex = 9;
+            this.TxtUsuarioNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUsuarioNombre_KeyPress);
             // 
             // TxtUsuarioID
             // 

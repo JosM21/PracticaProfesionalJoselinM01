@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -79,12 +80,53 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         }
 
-        private void BtnAcceder_Click(object sender, EventArgs e)
+
+
+        private void BtnAcceder_Click_1(object sender, EventArgs e)
         {
 
+            if (!string.IsNullOrEmpty(TxtUsuario.Text.Trim()) &&
+               !string.IsNullOrEmpty(TxtContrasennia.Text.Trim()))
+            {
+
+                string usuario = TxtUsuario.Text.Trim();
+                string contrasenia = TxtContrasennia.Text.Trim();
+
+                Globales.MiUsuarioGlobal = Globales.MiUsuarioGlobal.ValidarUsuario(usuario, contrasenia);
+
+                if (Globales.MiUsuarioGlobal.IdUsuario > 0)
+                {
+
+                    Globales.MiFormPrincipal.Show();
+
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectas", "Error de Validacion", MessageBoxButtons.OK);
+                    TxtContrasennia.Focus();
+                    TxtContrasennia.SelectAll();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Faltan datos requeridos", "Error de validacion", MessageBoxButtons.OK);
+            }
+
+
+        }
+
+  
+
+
+        private void BtnIngresoDirecto_Click(object sender, EventArgs e)
+        {
             Globales.MiFormPrincipal.Show();
 
             this.Hide();
         }
+
+
     }
 }

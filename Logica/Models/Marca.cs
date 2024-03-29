@@ -27,27 +27,27 @@ namespace Logica.Models
         }
 
 
-        public DataTable ListarActivos()
+        public DataTable ListarActivos(string pFiltroBusqueda)
         {
             DataTable R = new DataTable();
 
             Conexion MiCnn = new Conexion();
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", true));
-            // MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
             R = MiCnn.EjecutarSELECT("SPMarcaListar");
 
             return R;
         }
 
-        public DataTable ListarInactivos()
+        public DataTable ListarInactivos(string pFiltroBusqueda)
         {
             DataTable R = new DataTable();
             Conexion MiCnn = new Conexion();
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", false));
-            // MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
 
             R = MiCnn.EjecutarSELECT("SPMarcaListar");
@@ -162,7 +162,8 @@ namespace Logica.Models
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@descripcion", this.DescripcionMarca));
 
-            MiCnn.ListaDeParametros.Add(new SqlParameter("@idCategoria", this.IdMarca));
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@idMarca", this.IdMarca));
 
 
             int resultado = MiCnn.EjecutarInsertUpdateDelete("SPMarcaModificar");
@@ -177,43 +178,46 @@ namespace Logica.Models
 
         }
 
-        //public bool Eliminar()
-        //{
-        //    bool R = false;
+        public bool Eliminar()
+        {
+            bool R = false;
 
-        //    //Conexion MiCnn = new Conexion();
+            Conexion MiCnn = new Conexion();
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdMarca));
 
-        //    int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioDesactivar");
+            int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPMarcaDesactivar");
 
-        //    if (respuesta > 0)
-        //    {
-        //        R = true;
-        //    }
+            if (respuesta > 0)
+            {
 
-        //    return R;
-        //}
+                R = true;
 
-        //public bool Activar()
-        //{
-        //    bool R = false;
+            }
 
 
-        //    Conexion MiCnn = new Conexion();
+            return R;
+        }
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
+        public bool Activar()
+        {
+            bool R = false;
 
-        //    int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioActivar");
+            Conexion MiCnn = new Conexion();
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdMarca));
 
-        //    if (respuesta > 0)
-        //    {
-        //        R = true;
-        //    }
-        //    return R;
-        //}
+            int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPMarcaActivar");
+
+            if (respuesta > 0)
+            {
+                R = true;
+            }
 
 
+
+            return R;
+
+        }
 
 
     }

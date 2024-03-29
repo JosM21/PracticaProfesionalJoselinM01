@@ -33,7 +33,7 @@ namespace Logica.Models
         }
 
 
-        public DataTable ListarActivos()
+        public DataTable ListarActivos(string pFiltroBusqueda)
         {
             DataTable R = new DataTable();
 
@@ -41,20 +41,20 @@ namespace Logica.Models
 
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", true));
-            //MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
             R = MiCnn.EjecutarSELECT("SPProveedorListar");
 
             return R;
         }
 
-        public DataTable ListarInactivos()
+        public DataTable ListarInactivos(string pFiltroBusqueda)
         {
             DataTable R = new DataTable();
             Conexion MiCnn = new Conexion();
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", false));
-            // MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@FiltroBusqueda", pFiltroBusqueda));
 
 
             R = MiCnn.EjecutarSELECT("SPProveedorListar");
@@ -164,78 +164,77 @@ namespace Logica.Models
             return R;
         }
 
+        public bool Modificar()
+        {
+
+            bool R = false;
 
 
-        //public bool Editar()
-        //{
-        //    bool R = false;
+            Conexion MiCnn = new Conexion();
 
-        //    Conexion MiCnn = new Conexion();
-
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Correo", this.Correo));
-
-        //    //Encriptar la contraseña
-        //    Crypto MiEncriptador = new Crypto();
-        //    string ContrasenniaEncriptada = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", ContrasenniaEncriptada));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@nombre", this.Nombre));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@direccion", this.Direccion));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@telefono", this.Telefono));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@email", this.Email));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@cedula", this.Cedula));
 
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Nombre", this.Nombre));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Cedula", this.Cedula));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Telefono", this.Telefono));
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@Direccion", this.Direccion));
-
-        //    //normalmente los foreign keys tienen que ver con composiciones, en este caso 
-        //    //tenemos que extraer el valor del objeto compuesto 'MiRolTipo'
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@IdRol", this.MiRolTipo.IDRol));
-
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
-
-        //    int resultado = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioModificar");
-
-        //    if (resultado > 0)
-        //    {
-        //        R = true;
-        //    }
-
-        //    return R;
-        //}
-
-        //public bool Eliminar()
-        //{
-        //    bool R = false;
-
-        //    //Conexion MiCnn = new Conexion();
-
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
-
-        //    int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioDesactivar");
-
-        //    if (respuesta > 0)
-        //    {
-        //        R = true;
-        //    }
-
-        //    return R;
-        //}
-
-        //public bool Activar()
-        //{
-        //    bool R = false;
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@idProveedor", this.IdProveedor));
 
 
-        //    Conexion MiCnn = new Conexion();
+            int resultado = MiCnn.EjecutarInsertUpdateDelete("SPProveedorModificar");
 
-        //    MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IDUsuario));
 
-        //    int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioActivar");
+            if (resultado > 0)
+            {
+                R = true;
+            }
 
-        //    if (respuesta > 0)
-        //    {
-        //        R = true;
-        //    }
-        //    return R;
-        //}
+            return R;
+
+        }
+
+
+        public bool Eliminar()
+        {
+            bool R = false;
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdProveedor));
+
+            int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPProveedorDesactivar");
+
+            if (respuesta > 0)
+            {
+
+                R = true;
+
+            }
+
+
+            return R;
+        }
+
+        public bool Activar()
+        {
+            bool R = false;
+
+            Conexion MiCnn = new Conexion();
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdProveedor));
+
+            int respuesta = MiCnn.EjecutarInsertUpdateDelete("SPProveedorActivar");
+
+            if (respuesta > 0)
+            {
+                R = true;
+            }
+
+
+
+            return R;
+
+        }
 
 
 

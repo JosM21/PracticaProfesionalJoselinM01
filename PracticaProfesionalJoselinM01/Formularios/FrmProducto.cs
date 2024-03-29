@@ -48,17 +48,25 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             ListaProducto = new DataTable();
 
+
+            string FiltroBusqueda = "";
+            if (!string.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 3)
+            {
+                FiltroBusqueda = TxtBuscar.Text.Trim();
+            }
+
+
+
             if (CBoxVerActivos.Checked)
             {
-                ListaProducto = MiProductoLocal.ListarActivos();
+                ListaProducto = MiProductoLocal.ListarActivos(FiltroBusqueda);
             }
             else
             {
-                ListaProducto = MiProductoLocal.ListarInactivos();
+                ListaProducto = MiProductoLocal.ListarInactivos(FiltroBusqueda);
             }
 
             DgLista.DataSource = ListaProducto;
-
 
         }
 
@@ -159,7 +167,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
                 LimpiarFormulario();
 
-              
+
 
                 DataGridViewRow MiFila = DgLista.SelectedRows[0];
 
@@ -213,10 +221,10 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
 
             if (!string.IsNullOrEmpty(TxtProductoNombre.Text.Trim()) &&
-      
+
                 CbCategoria.SelectedIndex > -1 &&
                  CbMarca.SelectedIndex > -1 &&
-                 CbProveedor.SelectedIndex> -1)
+                 CbProveedor.SelectedIndex > -1)
 
 
             {
@@ -268,7 +276,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
             {
 
 
-                
+
                 bool NombreOK;
 
                 MiProductoLocal = new Logica.Models.Producto();
@@ -286,9 +294,9 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
 
                 NombreOK = MiProductoLocal.ConsultarPorDescripcion();
-                
 
-                if (NombreOK == false )
+
+                if (NombreOK == false)
                 {
                     string msg = string.Format("¿Desea agregar el producto {0}?", MiProductoLocal.Nombre);
 
@@ -325,7 +333,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
                 }
 
-              
+
 
 
             }
@@ -334,6 +342,120 @@ namespace PracticaProfesionalJoselinM01.Formularios
         private void DgLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void BtnModificar_Click(object sender, EventArgs e)
+        {
+
+            if (ValidarDatosDigitados())
+            {
+                MiProductoLocal.Nombre = TxtProductoNombre.Text.Trim();
+
+
+
+                MiProductoLocal.MiCategoria.IdCategoria = Convert.ToInt32(CbCategoria.SelectedValue);
+                MiProductoLocal.MiMarca.IdMarca = Convert.ToInt32(CbMarca.SelectedValue);
+                MiProductoLocal.MiProveedor.IdProveedor = Convert.ToInt32(CbProveedor.SelectedValue);
+
+
+                if (MiProductoLocal.ConsultarPorID())
+                {
+
+                    DialogResult respuesta = MessageBox.Show("Desea modificar el usuario? ", ":/", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        if (MiProductoLocal.Modificar())
+                        {
+                            MessageBox.Show("El usuario se modifico correctamente", ":)", MessageBoxButtons.OK);
+
+                            LimpiarFormulario();
+                            CargarListaProducto();
+
+                        }
+
+                    }
+
+                }
+            }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+
+
+            if (MiProductoLocal.IdProducto > 0 && MiProductoLocal.ConsultarPorID())
+            {
+
+                if (CBoxVerActivos.Checked)
+                {
+                    DialogResult r = MessageBox.Show("¿Desea eliminar el producto?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (r == DialogResult.Yes)
+                    {
+
+                        if (MiProductoLocal.Eliminar())
+                        {
+                            MessageBox.Show("El producto ha sido eliminado correctamente !", "!!", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaProducto();
+
+                            
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    DialogResult r = MessageBox.Show("¿Está seguro que desea activar el producto?", "???", MessageBoxButtons.YesNo
+                       , MessageBoxIcon.Question);
+                    if (r == DialogResult.Yes)
+                    {
+                        if (MiProductoLocal.Activar())
+                        {
+                            MessageBox.Show("El producto ha sido activada satisfactoriamente", ":)", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaProducto();
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+        private void TxtProductoNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+        }
+
+        private void CBoxVerActivos_CheckedChanged(object sender, EventArgs e)
+        {
+             CargarListaProducto();
+
+            if (CBoxVerActivos.Checked)
+            {
+                BtnEliminar.Text = "Eliminar";
+            }
+            else
+            {
+                BtnEliminar.Text = "Activar";
+            }
+
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarListaProducto();
         }
     }
 }

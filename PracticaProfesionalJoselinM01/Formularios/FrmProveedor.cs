@@ -36,17 +36,25 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             ListarProveedor = new DataTable();
 
+
+            string FiltroBusqueda = "";
+            if (!string.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 3)
+            {
+                FiltroBusqueda = TxtBuscar.Text.Trim();
+            }
+
+
+
             if (CBoxVerActivos.Checked)
             {
-                ListarProveedor = MiProveedorLocal.ListarActivos();
+                ListarProveedor = MiProveedorLocal.ListarActivos(FiltroBusqueda);
             }
             else
             {
-                ListarProveedor = MiProveedorLocal.ListarInactivos();
+                ListarProveedor = MiProveedorLocal.ListarInactivos(FiltroBusqueda);
             }
 
             DgLista.DataSource = ListarProveedor;
-
 
         }
 
@@ -252,6 +260,152 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
             }
 
+        }
+
+        private void BtnModificar_Click(object sender, EventArgs e)
+        {
+            if (ValidarDatosDigitados())
+            {
+                MiProveedorLocal.Nombre = TxtProveedorNombre.Text.Trim();
+                MiProveedorLocal.Direccion = TxtProveedorDireccion.Text.Trim();
+                MiProveedorLocal.Telefono = TxtProveedorTelefono.Text.Trim();
+                MiProveedorLocal.Email = TxtProveedorCorreo.Text.Trim();
+                MiProveedorLocal.Cedula = TxtProveedorCedula.Text.Trim();
+
+
+      
+
+
+                if (MiProveedorLocal.ConsultarPorID())
+                {
+
+                    DialogResult respuesta = MessageBox.Show("Desea modificar el proveedor? ", ":/", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        if (MiProveedorLocal.Modificar())
+                        {
+                            MessageBox.Show("El proveedor se modifico correctamente", ":)", MessageBoxButtons.OK);
+
+                            LimpiarFormulario();
+                            CargarListaProveedores();
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+
+
+            if (MiProveedorLocal.IdProveedor > 0 && MiProveedorLocal.ConsultarPorID())
+            {
+
+                if (CBoxVerActivos.Checked)
+                {
+                    DialogResult r = MessageBox.Show("¿Desea eliminar el proveedor?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (r == DialogResult.Yes)
+                    {
+
+                        if (MiProveedorLocal.Eliminar())
+                        {
+                            MessageBox.Show("El proveedor ha sido eliminado correctamente !", "!!", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaProveedores();
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    DialogResult r = MessageBox.Show("¿Está seguro que desea activar el proveedor?", "???", MessageBoxButtons.YesNo
+                       , MessageBoxIcon.Question);
+                    if (r == DialogResult.Yes)
+                    {
+                        if (MiProveedorLocal.Activar())
+                        {
+                            MessageBox.Show("El proveedor ha sido activada satisfactoriamente", ":)", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaProveedores();
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+        private void TxtProveedorNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+        }
+
+        private void TxtProveedorCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresNumeros(e, true);
+        }
+
+        private void TxtProveedorTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+        }
+
+        private void TxtProveedorCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e, false, true);
+        }
+
+        private void TxtProveedorDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+        }
+
+        private void TxtProveedorCorreo_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtProveedorCorreo.Text.Trim()))
+            {
+                if (!Validaciones.ValidarEmail(TxtProveedorCorreo.Text.Trim()))
+                {
+                    MessageBox.Show("El formato del correo electronico es incorrecto", "Error de validacion", MessageBoxButtons.OK);
+                    TxtProveedorCorreo.Focus();
+                }
+
+            }
+        }
+
+        private void CBoxVerActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarListaProveedores();
+
+            if (CBoxVerActivos.Checked)
+            {
+                BtnEliminar.Text = "Eliminar";
+            }
+            else
+            {
+                BtnEliminar.Text = "Activar";
+            }
+
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarListaProveedores();
         }
     }
 }

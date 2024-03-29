@@ -38,13 +38,22 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             ListarMarca = new DataTable();
 
+
+            string FiltroBusqueda = "";
+            if (!string.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 3)
+            {
+                FiltroBusqueda = TxtBuscar.Text.Trim();
+            }
+
+
+
             if (CBoxVerActivos.Checked)
             {
-                ListarMarca = MiMarcaLocal.ListarActivos();
+                ListarMarca = MiMarcaLocal.ListarActivos(FiltroBusqueda);
             }
             else
             {
-                ListarMarca = MiMarcaLocal.ListarInactivos();
+                ListarMarca = MiMarcaLocal.ListarInactivos(FiltroBusqueda);
             }
 
             DgLista.DataSource = ListarMarca;
@@ -208,9 +217,11 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         private void BtnModificar_Click(object sender, EventArgs e)
         {
+
             if (ValidarDatosDigitados())
             {
                 MiMarcaLocal.DescripcionMarca = TxtDescripcion.Text.Trim();
+  
 
 
                 if (MiMarcaLocal.ConsultarPorID())
@@ -232,11 +243,85 @@ namespace PracticaProfesionalJoselinM01.Formularios
                     }
 
                 }
+
             }
+
         }
 
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
 
 
+            if (MiMarcaLocal.IdMarca > 0 && MiMarcaLocal.ConsultarPorID())
+            {
 
+                if (CBoxVerActivos.Checked)
+                {
+                    DialogResult r = MessageBox.Show("¿Desea eliminar la marca?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (r == DialogResult.Yes)
+                    {
+
+                        if (MiMarcaLocal.Eliminar())
+                        {
+                            MessageBox.Show("La marca ha sido eliminado correctamente !", "!!", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaMarcas();
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    DialogResult r = MessageBox.Show("¿Está seguro que desea activar la marca?", "???", MessageBoxButtons.YesNo
+                       , MessageBoxIcon.Question);
+                    if (r == DialogResult.Yes)
+                    {
+                        if (MiMarcaLocal.Activar())
+                        {
+                            MessageBox.Show("La marca ha sido activada satisfactoriamente", ":)", MessageBoxButtons.OK);
+                            LimpiarFormulario();
+                            CargarListaMarcas();
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e);
+        }
+
+        private void CBoxVerActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarListaMarcas();
+
+            if (CBoxVerActivos.Checked)
+            {
+                BtnEliminar.Text = "Eliminar";
+            }
+            else
+            {
+                BtnEliminar.Text = "Activar";
+            }
+
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarListaMarcas();
+        }
     }
 }
