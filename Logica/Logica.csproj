@@ -48,6 +48,7 @@
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\TomaFisica.cs" />
+    <Compile Include="Models\TomaFisicaDetalle.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioRol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

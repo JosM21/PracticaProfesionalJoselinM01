@@ -81,7 +81,7 @@
             this.MarcasToolStripMenuItem});
             this.MnuGestiones.ForeColor = System.Drawing.Color.Silver;
             this.MnuGestiones.Name = "MnuGestiones";
-            this.MnuGestiones.Size = new System.Drawing.Size(130, 26);
+            this.MnuGestiones.Size = new System.Drawing.Size(130, 24);
             this.MnuGestiones.Text = "Mantenimientos";
             // 
             // toolStripSeparator1
@@ -128,14 +128,15 @@
             this.tomaFisicaToolStripMenuItem});
             this.MnuProcesos.ForeColor = System.Drawing.Color.Silver;
             this.MnuProcesos.Name = "MnuProcesos";
-            this.MnuProcesos.Size = new System.Drawing.Size(81, 26);
+            this.MnuProcesos.Size = new System.Drawing.Size(81, 24);
             this.MnuProcesos.Text = "Procesos";
             // 
             // tomaFisicaToolStripMenuItem
             // 
             this.tomaFisicaToolStripMenuItem.Name = "tomaFisicaToolStripMenuItem";
-            this.tomaFisicaToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.tomaFisicaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.tomaFisicaToolStripMenuItem.Text = "Toma Fisica";
+            this.tomaFisicaToolStripMenuItem.Click += new System.EventHandler(this.tomaFisicaToolStripMenuItem_Click);
             // 
             // MnuSeguridad
             // 
@@ -144,7 +145,7 @@
             this.reportesToolStripMenuItem});
             this.MnuSeguridad.ForeColor = System.Drawing.Color.Silver;
             this.MnuSeguridad.Name = "MnuSeguridad";
-            this.MnuSeguridad.Size = new System.Drawing.Size(91, 26);
+            this.MnuSeguridad.Size = new System.Drawing.Size(91, 24);
             this.MnuSeguridad.Text = "Seguridad";
             // 
             // usuariosToolStripMenuItem
@@ -167,7 +168,7 @@
             this.manualDeUsuarioToolStripMenuItem});
             this.MnuAyuda.ForeColor = System.Drawing.Color.Silver;
             this.MnuAyuda.Name = "MnuAyuda";
-            this.MnuAyuda.Size = new System.Drawing.Size(65, 26);
+            this.MnuAyuda.Size = new System.Drawing.Size(65, 24);
             this.MnuAyuda.Text = "Ayuda";
             // 
             // versiónToolStripMenuItem
@@ -186,7 +187,7 @@
             // 
             this.MnuSalir.ForeColor = System.Drawing.Color.Silver;
             this.MnuSalir.Name = "MnuSalir";
-            this.MnuSalir.Size = new System.Drawing.Size(52, 26);
+            this.MnuSalir.Size = new System.Drawing.Size(52, 24);
             this.MnuSalir.Text = "Salir";
             // 
             // statusStrip1

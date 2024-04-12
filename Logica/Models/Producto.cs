@@ -16,6 +16,8 @@ namespace Logica.Models
 
         public int Cantidad { get; set; }
 
+        //composicion 
+
         public Categoria MiCategoria { get; set; }
         public Marca MiMarca { get; set; }
         public Proveedor MiProveedor { get; set; }
@@ -25,6 +27,18 @@ namespace Logica.Models
             MiCategoria = new Categoria();
             MiMarca = new Marca();
             MiProveedor = new Proveedor();  
+        }
+
+        public DataTable ListarProductos(bool verActivos = true)
+        {
+            DataTable R = new DataTable();
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", verActivos));
+            R = MiCnn.EjecutarSELECT("SPTomaFisicaDetalleListar");
+
+            return R;
         }
 
         public DataTable ListarActivos(string pFiltroBusqueda)
@@ -41,7 +55,6 @@ namespace Logica.Models
 
             return R;
         }
-
 
 
         public DataTable ListarInactivos(string pFiltroBusqueda)

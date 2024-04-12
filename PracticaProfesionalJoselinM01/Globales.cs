@@ -19,7 +19,10 @@ namespace PracticaProfesionalJoselinM01
 
         public static Formularios.FrmMarca MiFormMarca = new Formularios.FrmMarca();
 
+        public static Formularios.FrmTomaFisica MiFormTomaFisica = new Formularios.FrmTomaFisica();
 
         public static Logica.Models.Usuario MiUsuarioGlobal = new Logica.Models.Usuario(); 
+
+        
     }
 }

@@ -107,5 +107,16 @@ namespace PracticaProfesionalJoselinM01.Formularios
                     break;
             }
         }
+
+        private void tomaFisicaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Globales.MiFormTomaFisica.Visible)
+            {
+                Globales.MiFormTomaFisica = new FrmTomaFisica();
+                Globales.MiFormTomaFisica.Show();
+
+            }
+
+        }
     }
 }

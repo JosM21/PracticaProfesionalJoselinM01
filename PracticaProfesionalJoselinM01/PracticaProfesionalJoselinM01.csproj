@@ -82,6 +82,12 @@
     <Compile Include="Formularios\FrmProveedor.Designer.cs">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrmTomaFisica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmTomaFisica.Designer.cs">
+      <DependentUpon>FrmTomaFisica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmProveedor.resx">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmTomaFisica.resx">
+      <DependentUpon>FrmTomaFisica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>

@@ -506,6 +506,11 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             CargarListaUsuarios();
         }
+
+        private void DgLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
 }
