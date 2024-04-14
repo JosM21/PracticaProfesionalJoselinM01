@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtStock = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.CbProveedor = new System.Windows.Forms.ComboBox();
             this.CbMarca = new System.Windows.Forms.ComboBox();
             this.CbCategoria = new System.Windows.Forms.ComboBox();
@@ -46,20 +48,23 @@
             this.BtnModificar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.DgLista = new System.Windows.Forms.DataGridView();
-            this.CidProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CnombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdescripcionCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdescripcionMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CnombreProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CBoxVerActivos = new System.Windows.Forms.CheckBox();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.CidProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CnombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cstock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdescripcionCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdescripcionMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CnombreProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgLista)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtStock);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.CbProveedor);
             this.groupBox1.Controls.Add(this.CbMarca);
             this.groupBox1.Controls.Add(this.CbCategoria);
@@ -78,6 +83,25 @@
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalle de Producto";
+            // 
+            // TxtStock
+            // 
+            this.TxtStock.BackColor = System.Drawing.Color.White;
+            this.TxtStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtStock.ForeColor = System.Drawing.Color.Black;
+            this.TxtStock.Location = new System.Drawing.Point(706, 126);
+            this.TxtStock.Name = "TxtStock";
+            this.TxtStock.Size = new System.Drawing.Size(354, 27);
+            this.TxtStock.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(584, 129);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 25);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Stock:";
             // 
             // CbProveedor
             // 
@@ -251,18 +275,19 @@
             this.DgLista.AllowUserToAddRows = false;
             this.DgLista.AllowUserToDeleteRows = false;
             this.DgLista.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CidProducto,
             this.CnombreProducto,
+            this.Cstock,
             this.CdescripcionCategoria,
             this.CdescripcionMarca,
             this.CnombreProveedor});
@@ -277,53 +302,7 @@
             this.DgLista.Size = new System.Drawing.Size(1102, 213);
             this.DgLista.TabIndex = 29;
             this.DgLista.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgLista_CellClick);
-            this.DgLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgLista_CellContentClick);
             this.DgLista.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgLista_DataBindingComplete);
-            // 
-            // CidProducto
-            // 
-            this.CidProducto.DataPropertyName = "idProducto";
-            this.CidProducto.HeaderText = "Código";
-            this.CidProducto.MinimumWidth = 6;
-            this.CidProducto.Name = "CidProducto";
-            this.CidProducto.ReadOnly = true;
-            this.CidProducto.Width = 125;
-            // 
-            // CnombreProducto
-            // 
-            this.CnombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CnombreProducto.DataPropertyName = "nombreProducto";
-            this.CnombreProducto.HeaderText = "Nombre";
-            this.CnombreProducto.MinimumWidth = 6;
-            this.CnombreProducto.Name = "CnombreProducto";
-            this.CnombreProducto.ReadOnly = true;
-            // 
-            // CdescripcionCategoria
-            // 
-            this.CdescripcionCategoria.DataPropertyName = "descripcionCategoria";
-            this.CdescripcionCategoria.HeaderText = "Categoria";
-            this.CdescripcionCategoria.MinimumWidth = 6;
-            this.CdescripcionCategoria.Name = "CdescripcionCategoria";
-            this.CdescripcionCategoria.ReadOnly = true;
-            this.CdescripcionCategoria.Width = 200;
-            // 
-            // CdescripcionMarca
-            // 
-            this.CdescripcionMarca.DataPropertyName = "descripcionMarca";
-            this.CdescripcionMarca.HeaderText = "Marca";
-            this.CdescripcionMarca.MinimumWidth = 6;
-            this.CdescripcionMarca.Name = "CdescripcionMarca";
-            this.CdescripcionMarca.ReadOnly = true;
-            this.CdescripcionMarca.Width = 200;
-            // 
-            // CnombreProveedor
-            // 
-            this.CnombreProveedor.DataPropertyName = "nombreProveedor";
-            this.CnombreProveedor.HeaderText = "Proveedor";
-            this.CnombreProveedor.MinimumWidth = 6;
-            this.CnombreProveedor.Name = "CnombreProveedor";
-            this.CnombreProveedor.ReadOnly = true;
-            this.CnombreProveedor.Width = 200;
             // 
             // CBoxVerActivos
             // 
@@ -359,6 +338,58 @@
             this.label1.Size = new System.Drawing.Size(73, 25);
             this.label1.TabIndex = 26;
             this.label1.Text = "Buscar";
+            // 
+            // CidProducto
+            // 
+            this.CidProducto.DataPropertyName = "idProducto";
+            this.CidProducto.HeaderText = "Código";
+            this.CidProducto.MinimumWidth = 6;
+            this.CidProducto.Name = "CidProducto";
+            this.CidProducto.ReadOnly = true;
+            // 
+            // CnombreProducto
+            // 
+            this.CnombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CnombreProducto.DataPropertyName = "nombreProducto";
+            this.CnombreProducto.HeaderText = "Nombre";
+            this.CnombreProducto.MinimumWidth = 6;
+            this.CnombreProducto.Name = "CnombreProducto";
+            this.CnombreProducto.ReadOnly = true;
+            // 
+            // Cstock
+            // 
+            this.Cstock.DataPropertyName = "stock";
+            this.Cstock.HeaderText = "Stock";
+            this.Cstock.MinimumWidth = 6;
+            this.Cstock.Name = "Cstock";
+            this.Cstock.ReadOnly = true;
+            // 
+            // CdescripcionCategoria
+            // 
+            this.CdescripcionCategoria.DataPropertyName = "descripcionCategoria";
+            this.CdescripcionCategoria.HeaderText = "Categoria";
+            this.CdescripcionCategoria.MinimumWidth = 6;
+            this.CdescripcionCategoria.Name = "CdescripcionCategoria";
+            this.CdescripcionCategoria.ReadOnly = true;
+            this.CdescripcionCategoria.Width = 125;
+            // 
+            // CdescripcionMarca
+            // 
+            this.CdescripcionMarca.DataPropertyName = "descripcionMarca";
+            this.CdescripcionMarca.HeaderText = "Marca";
+            this.CdescripcionMarca.MinimumWidth = 6;
+            this.CdescripcionMarca.Name = "CdescripcionMarca";
+            this.CdescripcionMarca.ReadOnly = true;
+            this.CdescripcionMarca.Width = 125;
+            // 
+            // CnombreProveedor
+            // 
+            this.CnombreProveedor.DataPropertyName = "nombreProveedor";
+            this.CnombreProveedor.HeaderText = "Proveedor";
+            this.CnombreProveedor.MinimumWidth = 6;
+            this.CnombreProveedor.Name = "CnombreProveedor";
+            this.CnombreProveedor.ReadOnly = true;
+            this.CnombreProveedor.Width = 125;
             // 
             // FrmProducto
             // 
@@ -411,8 +442,11 @@
         private System.Windows.Forms.ComboBox CbProveedor;
         private System.Windows.Forms.ComboBox CbMarca;
         private System.Windows.Forms.ComboBox CbCategoria;
+        private System.Windows.Forms.TextBox TxtStock;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn CidProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CnombreProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cstock;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdescripcionCategoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdescripcionMarca;
         private System.Windows.Forms.DataGridViewTextBoxColumn CnombreProveedor;

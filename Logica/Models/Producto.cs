@@ -14,7 +14,7 @@ namespace Logica.Models
         public int IdProducto { get; set; }
         public string Nombre { get; set; }
 
-        public int Cantidad { get; set; }
+        public int Stock { get; set; }
 
         //composicion 
 
@@ -112,7 +112,8 @@ namespace Logica.Models
 
                 R.IdProducto = Convert.ToInt32(dr["idProducto"]);
                 R.Nombre = Convert.ToString(dr["nombreProducto"]);
-             
+                R.Stock = Convert.ToInt32(dr["stock"]);
+
 
                 //        //composiciones
                 R.MiCategoria.IdCategoria = Convert.ToInt32(dr["idCategoria"]);
@@ -165,6 +166,7 @@ namespace Logica.Models
             Conexion MiCnn = new Conexion();
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@nombre", this.Nombre));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@stock", this.Stock));
 
             //composiciones
             MiCnn.ListaDeParametros.Add(new SqlParameter("@categoria", this.MiCategoria.IdCategoria));
@@ -195,7 +197,8 @@ namespace Logica.Models
             MiCnn.ListaDeParametros.Add(new SqlParameter("@idProducto", this.IdProducto));
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@nombre", this.Nombre));
-        
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@stock", this.Stock));
+
 
             //composiciones
             MiCnn.ListaDeParametros.Add(new SqlParameter("@categoria", this.MiCategoria.IdCategoria));

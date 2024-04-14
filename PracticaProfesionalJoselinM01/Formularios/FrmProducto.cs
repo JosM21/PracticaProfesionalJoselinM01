@@ -183,6 +183,8 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
                     TxtProductoID.Text = Convert.ToString(MiProductoLocal.IdProducto);
                     TxtProductoNombre.Text = MiProductoLocal.Nombre;
+                    TxtStock.Text = Convert.ToString(MiProductoLocal.Stock);
+
 
 
                     CbCategoria.SelectedValue = MiProductoLocal.MiCategoria.IdCategoria;
@@ -208,6 +210,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             TxtProductoID.Clear();
             TxtProductoNombre.Clear();
+            TxtStock.Clear();
 
             CbCategoria.SelectedIndex = -1;
             CbMarca.SelectedIndex = -1;
@@ -218,9 +221,12 @@ namespace PracticaProfesionalJoselinM01.Formularios
         private bool ValidarDatosDigitados()
         {
             bool R = false;
+           
 
+            // int.TryParse(item["cantidad"].ToString(), out number)
 
             if (!string.IsNullOrEmpty(TxtProductoNombre.Text.Trim()) &&
+              
 
                 CbCategoria.SelectedIndex > -1 &&
                  CbMarca.SelectedIndex > -1 &&
@@ -239,6 +245,13 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
                     MessageBox.Show("Debe digitar un nombre valido", "Error de validacion", MessageBoxButtons.OK);
                     TxtProductoNombre.Focus();
+                    return false;
+                }
+
+                 {
+
+                    MessageBox.Show("Debe digitar un stock valido", "Error de validacion", MessageBoxButtons.OK);
+                    TxtStock.Focus();
                     return false;
                 }
 
@@ -264,6 +277,8 @@ namespace PracticaProfesionalJoselinM01.Formularios
                     return false;
                 }
 
+      
+
             }
 
             return R;
@@ -284,6 +299,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
 
                 MiProductoLocal.Nombre = TxtProductoNombre.Text.Trim();
+                MiProductoLocal.Stock = Convert.ToInt32(TxtStock.Text.Trim());
 
 
                 //composiciones
@@ -339,10 +355,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
             }
         }
 
-        private void DgLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         private void BtnModificar_Click(object sender, EventArgs e)
         {
@@ -350,6 +363,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
             if (ValidarDatosDigitados())
             {
                 MiProductoLocal.Nombre = TxtProductoNombre.Text.Trim();
+                MiProductoLocal.Stock = Convert.ToInt32(TxtStock.Text.Trim());
 
 
 

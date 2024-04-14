@@ -9,6 +9,7 @@ namespace Logica.Models
     public class TomaFisicaDetalle
     {
         public int Cantidad {  get; set; }
+        public int Nombre { get; set; }
 
         //composicion
 
