@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Logica.Services;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +15,8 @@ namespace Logica.Models
         public int IdTomaFisica { get; set; }
         public DateTime Fecha { get; set; }
         public string Notas { get; set; }
-        public bool Active { get; set; }   
-        
+        public bool Active { get; set; }
+
 
         //compociciones simples
 
@@ -21,7 +24,7 @@ namespace Logica.Models
 
         //compociciones complejas
 
-        public List<TomaFisicaDetalle> ListaDetalles {  get; set; }
+        public List<TomaFisicaDetalle> ListaDetalles { get; set; }
 
         public TomaFisica()
         {
@@ -29,5 +32,74 @@ namespace Logica.Models
             ListaDetalles = new List<TomaFisicaDetalle>();
 
         }
+
+
+
+        public bool Agregar()
+        {
+            bool R = false;
+
+            Conexion MiCnn = new Conexion();
+
+            //lista de parametros 
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Notas", this.Notas));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@IdUsuario", this.MiUsuario.IdUsuario));
+           
+            Object retorno = MiCnn.EjecutarSELECTEscalar("SPTomaFisicaAgregar");
+
+            //como la devolución puede ser cualquier tipo (string, int, decimal, etc) 
+            //se captura la respuesta en un Object y luego se hace la conversión al tipo correcto 
+            //en este caso es un int
+
+            int IDCreada;
+
+            if (retorno != null)
+            {
+                try
+                {
+                    IDCreada = Convert.ToInt32(retorno.ToString());
+
+                    this.IdTomaFisica = IDCreada;
+
+                    //hasta este punto se puede asegurar que el insert en el encabezado salió
+                    //correctamente 
+                    //se procede con los insert en el detalle 
+
+                    foreach (TomaFisicaDetalle item in this.ListaDetalles)
+                    {
+                        Conexion MiCnnDetalle = new Conexion();
+
+                        //lista de parámetros del sp de insert a detalle 
+                        MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@IdTomaFisica", IDCreada));
+                        MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@IdProducto", item.MiProducto.IdProducto));
+                        MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@Cantidad", item.CantidadFisica));
+                        MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@StockAnterior", item.StockAnterior));
+                        MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@diferencia", item.Diferencia));
+
+
+                        MiCnnDetalle.EjecutarInsertUpdateDelete("SPTomaFisicaDetalleAgregar");
+
+                    }
+
+                    R = true;
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+
+            }
+
+
+
+            return R;
+
+        }
+
+
     }
+
 }

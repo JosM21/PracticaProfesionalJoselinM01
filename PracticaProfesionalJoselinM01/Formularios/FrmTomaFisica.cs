@@ -98,7 +98,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             //primero se valida que se haya seleccionado un proveedor, un tipo de compra
             //y que haya como mínimo una linea en el detalle 
-            if (ValidarCompra())
+            if (ValidarAgregar())
             {
                 //los pasos para agregar un encabezado-detalle son: 
                 //1. realizar insert en el encabezado y recolectar el ID recién creado, 
@@ -109,21 +109,21 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
 
                 //se agregan los datos de encabezado que hacen falta (de proveedor ya estaban listos) 
-                MiTomaFisicaLocal.MiTipoCompra.CompraTipoID = Convert.ToInt32(CboxCompraTipo.SelectedValue);
-                MiTomaFisicaLocal.CompraNotas = TxtNotas.Text.Trim();
+                MiTomaFisicaLocal.Fecha = fechaCompra.Value;
+                MiTomaFisicaLocal.Notas = TxtNotas.Text.Trim();
 
                 //como estoy ingresando con un botón de ingreso rápido en el login no tengo 
                 //datos en el usuario global. por lo pronto el ID será "quemado" 
-                MiCompraLocal.MiUsuario.UsuarioID = 2;
+                MiTomaFisicaLocal.MiUsuario.IdUsuario = 1;
 
-                TrasladoDetalleListaVisualAObjetoCompra();
+                Traslado();
 
                 //a este punto tenemos armado completamente el objeto de compra local. 
                 //se puede proceder a la función de agregar. 
 
-                if (MiCompraLocal.Agregar())
+                if (MiTomaFisicaLocal.Agregar())
                 {
-                    MessageBox.Show("Compra creada correctamente!!", ":)", MessageBoxButtons.OK);
+                    MessageBox.Show("Inventario actualizado correctamente!!", ":)", MessageBoxButtons.OK);
 
                     //TODO. crear un reporte de la compra. 
 
@@ -134,45 +134,85 @@ namespace PracticaProfesionalJoselinM01.Formularios
             }
 
         }
-            private bool ValidarCompra()
+
+        private void Traslado()
+        {
+            //pasamos los datos del datatable que se usa graficamente a la List<> del objeto
+            //MiCompraLocal 
+            foreach (DataRow fila in ListaProducto.Rows)
+            {
+                TomaFisicaDetalle nuevodetalle = new TomaFisicaDetalle();
+
+                nuevodetalle.MiProducto.IdProducto = Convert.ToInt32(fila["idProducto"]);
+                nuevodetalle.StockAnterior = Convert.ToInt32(fila["stock"]);
+                nuevodetalle.CantidadFisica = Convert.ToInt32(fila["cantidad"]);
+                nuevodetalle.Diferencia = Convert.ToInt32(fila["diferencia"]);
+
+
+                //una vez tenemos los datos en el nuevodetalle se agrega ese objeto a la lista
+                //de detalles de la compra local 
+                MiTomaFisicaLocal.ListaDetalles.Add(nuevodetalle);
+
+
+
+            }
+        }
+
+      
+
+        private bool ValoresValidos()
+        {
+            foreach (DataGridViewRow row in DgLista.Rows)
+            {
+                object valorCelda = row.Cells["Ccantidad"].Value;
+                if (valorCelda == null || !int.TryParse(valorCelda.ToString(), out _))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        private void LimpiarForm()
+        {
+            TxtNotas.Clear();
+            
+       
+
+
+            ListaProducto = new DataTable();
+
+            DgLista.DataSource = ListaProducto;
+
+
+        }
+
+
+        private bool ValidarAgregar()
             {
                 bool R = false;
 
-                if (fechaCompra.Value != DateTime.MinValue &&
-                !string.IsNullOrEmpty(TxtProveedorNombre.Text.Trim()) &&
-                    CboxCompraTipo.SelectedIndex >= 0 &&
-                    ListaProductos.Rows.Count > 0)
+            if (ValoresValidos())
+                
+            {
+                R = true;
+            }
+            else
+            {
 
-
-
+                if (ValoresValidos())
                 {
-                    R = true;
+                    MessageBox.Show("Todos los valores en la columna 'Cantidad' deben ser enteros válidos", "Error de validación", MessageBoxButtons.OK);
+                    return false;
                 }
-                else
-                {
-                    if (string.IsNullOrEmpty(TxtProveedorNombre.Text.Trim()))
-                    {
-                        MessageBox.Show("Se debe seleccionar un proveedor", "Error de validación", MessageBoxButtons.OK);
-                        return false;
-                    }
 
-                    if (CboxCompraTipo.SelectedIndex == -1)
-                    {
-                        MessageBox.Show("Se debe seleccionar un tipo de compra", "Error de validación", MessageBoxButtons.OK);
-                        return false;
-                    }
 
-                    if (ListaProductos.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Debe haber al menos una fila en el detalle", "Error de validación", MessageBoxButtons.OK);
-                        return false;
-                    }
-
-                }
+            }
 
                 return R;
 
-            }
+        }
         
     }
 }

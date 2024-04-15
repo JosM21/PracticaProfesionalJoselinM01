@@ -253,7 +253,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
                     MessageBox.Show("Debe digitar un stock valido", "Error de validacion", MessageBoxButtons.OK);
                     TxtStock.Focus();
                     return false;
-                }
+                 }
 
 
                 if (CbCategoria.SelectedIndex == -1)
