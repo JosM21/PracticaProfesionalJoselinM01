@@ -21,6 +21,8 @@ namespace PracticaProfesionalJoselinM01
 
         public static Formularios.FrmTomaFisica MiFormTomaFisica = new Formularios.FrmTomaFisica();
 
+        public static Formularios.FrmRecuperacionContrasennia MiFormRecuperacionContrasennia = new Formularios.FrmRecuperacionContrasennia();
+
         public static Logica.Models.Usuario MiUsuarioGlobal = new Logica.Models.Usuario(); 
 
         

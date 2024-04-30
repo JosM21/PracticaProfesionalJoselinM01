@@ -327,6 +327,102 @@ namespace Logica.Models
         }
 
 
+        public bool ValidarCodigoVerificacion(string pUsuario, string pCodigoVerificacion)
+        {
+            bool R = false;
+
+            this.Email = pUsuario;
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Usuario", this.Email));
+
+            DataTable Respuesta = MiCnn.EjecutarSELECT("SPUsuarioObtenerCodigoRecuperacion");
+
+            if (Respuesta != null && Respuesta.Rows.Count > 0)
+            {
+                DataRow MiFila = Respuesta.Rows[0];
+
+                string CodigoDB = Convert.ToString(MiFila["codigo"]);
+
+                //Se compara el codigo almacenado en la tabla contra el código tipeado en el formulario (que llegó acá por param)
+                if (CodigoDB == pCodigoVerificacion)
+                {
+                    R = true;
+                }
+            }
+            return R;
+        }
+
+        public bool GuardarCodigoRecuperacionContrasennia(string CodigoRecuperacion)
+        {
+            bool R = false;
+
+            try
+            {
+                Conexion MiCnn = new Conexion();
+
+                //Lista de parametros que llegarán al SP
+                MiCnn.ListaDeParametros.Add(new SqlParameter("@Email", this.Email));
+                MiCnn.ListaDeParametros.Add(new SqlParameter("@CodigoRecuperacion", CodigoRecuperacion));
+
+                int retorno = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioGuardarCodigoRecuperacion");
+
+                if (retorno > 0)
+                {
+                    R = true;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return R;
+        }
+
+        public bool EditarPassword()
+        {
+            bool R = false;
+
+            try
+            {
+                Conexion MiCnn = new Conexion();
+
+                //Lista de parametros que llegarán al SP
+
+                MiCnn.ListaDeParametros.Add(new SqlParameter("@Email", this.Email));
+
+                Crypto MiEncriptador = new Crypto();
+                string PasswordEncriptado = "";
+
+                if (!string.IsNullOrEmpty(this.Contrasennia))
+                {
+                    PasswordEncriptado = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
+                }
+
+                MiCnn.ListaDeParametros.Add(new SqlParameter("@Pass", PasswordEncriptado));
+
+                int retorno = MiCnn.EjecutarInsertUpdateDelete("SPUsuarioEditarPassword");
+
+                if (retorno > 0)
+                {
+                    R = true;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return R;
+        }
+
+
     }
 }
 

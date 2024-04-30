@@ -261,6 +261,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
             TxtUsuarioCedula.Clear();
             TxtUsuarioCorreo.Clear();
             TxtUsuarioTelefono.Clear();
+            TxtUsuarioContrasennia.Clear();
             TxtUsuarioDireccion.Clear();
             CbRolesUsuario.SelectedIndex = -1;
         }
@@ -499,7 +500,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)

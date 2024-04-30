@@ -15,6 +15,8 @@ namespace PracticaProfesionalJoselinM01.Formularios
         public FrmMDI()
         {
             InitializeComponent();
+
+     
         }
 
         private void FrmMDI_FormClosed(object sender, FormClosedEventArgs e)
@@ -116,6 +118,28 @@ namespace PracticaProfesionalJoselinM01.Formularios
                 Globales.MiFormTomaFisica.Show();
 
             }
+
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void MnuSalir_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
+
+    
+
+
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+
 
         }
     }

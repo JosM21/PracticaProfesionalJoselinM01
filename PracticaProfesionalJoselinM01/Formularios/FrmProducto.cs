@@ -363,7 +363,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
             if (ValidarDatosDigitados())
             {
                 MiProductoLocal.Nombre = TxtProductoNombre.Text.Trim();
-                MiProductoLocal.Stock = Convert.ToInt32(TxtStock.Text.Trim());
+                MiProductoLocal.Stock = int.Parse(TxtStock.Text.Trim());
 
 
 
@@ -375,13 +375,13 @@ namespace PracticaProfesionalJoselinM01.Formularios
                 if (MiProductoLocal.ConsultarPorID())
                 {
 
-                    DialogResult respuesta = MessageBox.Show("Desea modificar el usuario? ", ":/", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult respuesta = MessageBox.Show("Desea modificar el producto? ", ":/", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     if (respuesta == DialogResult.Yes)
                     {
                         if (MiProductoLocal.Modificar())
                         {
-                            MessageBox.Show("El usuario se modifico correctamente", ":)", MessageBoxButtons.OK);
+                            MessageBox.Show("El producto se modifico correctamente", ":)", MessageBoxButtons.OK);
 
                             LimpiarFormulario();
                             CargarListaProducto();
@@ -464,12 +464,25 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             CargarListaProducto();
+        }
+
+        private void TxtStock_TextChanged(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(TxtStock.Text.Trim()))
+            {
+
+                TxtStock.Text = "0";
+                TxtStock.SelectAll();
+
+            }
+
         }
     }
 }

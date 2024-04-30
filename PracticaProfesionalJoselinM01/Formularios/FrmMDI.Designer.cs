@@ -134,7 +134,7 @@
             // tomaFisicaToolStripMenuItem
             // 
             this.tomaFisicaToolStripMenuItem.Name = "tomaFisicaToolStripMenuItem";
-            this.tomaFisicaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.tomaFisicaToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
             this.tomaFisicaToolStripMenuItem.Text = "Toma Fisica";
             this.tomaFisicaToolStripMenuItem.Click += new System.EventHandler(this.tomaFisicaToolStripMenuItem_Click);
             // 
@@ -151,15 +151,16 @@
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.reportesToolStripMenuItem.Text = "Reportes";
+            this.reportesToolStripMenuItem.Click += new System.EventHandler(this.reportesToolStripMenuItem_Click);
             // 
             // MnuAyuda
             // 
@@ -189,6 +190,7 @@
             this.MnuSalir.Name = "MnuSalir";
             this.MnuSalir.Size = new System.Drawing.Size(52, 24);
             this.MnuSalir.Text = "Salir";
+            this.MnuSalir.Click += new System.EventHandler(this.MnuSalir_Click);
             // 
             // statusStrip1
             // 
@@ -201,6 +203,7 @@
             this.statusStrip1.Size = new System.Drawing.Size(1042, 26);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // toolStripStatusLabel1
             // 
@@ -222,10 +225,12 @@
             this.ClientSize = new System.Drawing.Size(1042, 617);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.MnuPrincipal);
+            this.HelpButton = true;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.MnuPrincipal;
             this.MaximizeBox = false;
             this.Name = "FrmMDI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Toma Fisica de Inventario Ruta 1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMDI_FormClosed);

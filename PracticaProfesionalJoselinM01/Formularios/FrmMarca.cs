@@ -316,7 +316,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)

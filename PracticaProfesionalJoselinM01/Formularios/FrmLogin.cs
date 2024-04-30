@@ -127,6 +127,11 @@ namespace PracticaProfesionalJoselinM01.Formularios
             this.Hide();
         }
 
+        private void linkPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Globales.MiFormRecuperacionContrasennia.TxtUsuario.Text = TxtUsuario.Text;
 
+            Globales.MiFormRecuperacionContrasennia.Show();
+        }
     }
 }

@@ -44,6 +44,7 @@ namespace Logica.Models
             //lista de parametros 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@Notas", this.Notas));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@IdUsuario", this.MiUsuario.IdUsuario));
+
            
             Object retorno = MiCnn.EjecutarSELECTEscalar("SPTomaFisicaAgregar");
 

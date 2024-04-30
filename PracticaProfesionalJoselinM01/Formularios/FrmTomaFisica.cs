@@ -14,25 +14,19 @@ namespace PracticaProfesionalJoselinM01.Formularios
     public partial class FrmTomaFisica : Form
     {
 
-        public DataTable ListaProducto {  get; set; }
+        public DataTable ListaProducto { get; set; }
 
         public Logica.Models.Producto MiProductoLocal { get; set; }
 
-        public  TomaFisica MiTomaFisicaLocal { get; set; }
-        
+        public TomaFisica MiTomaFisicaLocal { get; set; }
+
 
 
         public FrmTomaFisica()
         {
             InitializeComponent();
 
-            MiTomaFisicaLocal = new TomaFisica();
-
-            MiProductoLocal = new Logica.Models.Producto();
-
-            ListaProducto = new DataTable();
-
-            CargarListaProductos();
+            LimpiarForm();
 
 
         }
@@ -48,7 +42,16 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
             ListaProducto = new DataTable();
 
+
             ListaProducto = MiProductoLocal.ListarProductos(true);
+
+            foreach (DataRow item in ListaProducto.Rows)
+            {
+
+                item["cantidad"] = DBNull.Value;
+                item["diferencia"] = DBNull.Value; 
+
+            }
 
             DgLista.DataSource = ListaProducto;
 
@@ -56,15 +59,15 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
-        
+
 
 
         private void CalcularDiferencia()
         {
-            if (ListaProducto != null && ListaProducto.Rows.Count>0)
+            if (ListaProducto != null && ListaProducto.Rows.Count > 0)
             {
 
                 foreach (DataRow item in ListaProducto.Rows)
@@ -82,10 +85,11 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
                 }
 
-               // ListaProducto.AcceptChanges();
-                        
+                //ListaProducto.AcceptChanges();
+
             }
         }
+
 
         private void DgLista_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
@@ -98,40 +102,44 @@ namespace PracticaProfesionalJoselinM01.Formularios
         {
             //primero se valida que se haya seleccionado un proveedor, un tipo de compra
             //y que haya como mínimo una linea en el detalle 
-            if (ValidarAgregar())
+            //if (ValidarAgregar())
+            //{
+            //los pasos para agregar un encabezado-detalle son: 
+            //1. realizar insert en el encabezado y recolectar el ID recién creado, 
+            //teniendo claro que ese ID se genera a nivel de base de datos. 
+
+            //2. Con ese ID + el Id del producto tenemos las dos FK para hacer el insert en 
+            //la tabla de detalle 
+
+
+            //se agregan los datos de encabezado que hacen falta (de proveedor ya estaban listos) 
+            MiTomaFisicaLocal.Fecha = fechaCompra.Value;
+            MiTomaFisicaLocal.Notas = TxtNotas.Text.Trim();
+
+            //como estoy ingresando con un botón de ingreso rápido en el login no tengo 
+            //datos en el usuario global. por lo pronto el ID será "quemado" 
+            MiTomaFisicaLocal.MiUsuario.IdUsuario = Globales.MiUsuarioGlobal.IdUsuario;
+
+            Traslado();
+
+            //a este punto tenemos armado completamente el objeto de compra local. 
+            //se puede proceder a la función de agregar. 
+
+            if (MiTomaFisicaLocal.Agregar())
             {
-                //los pasos para agregar un encabezado-detalle son: 
-                //1. realizar insert en el encabezado y recolectar el ID recién creado, 
-                //teniendo claro que ese ID se genera a nivel de base de datos. 
-
-                //2. Con ese ID + el Id del producto tenemos las dos FK para hacer el insert en 
-                //la tabla de detalle 
+                MessageBox.Show("Inventario actualizado correctamente!!", ":)", MessageBoxButtons.OK);
 
 
-                //se agregan los datos de encabezado que hacen falta (de proveedor ya estaban listos) 
-                MiTomaFisicaLocal.Fecha = fechaCompra.Value;
-                MiTomaFisicaLocal.Notas = TxtNotas.Text.Trim();
 
-                //como estoy ingresando con un botón de ingreso rápido en el login no tengo 
-                //datos en el usuario global. por lo pronto el ID será "quemado" 
-                MiTomaFisicaLocal.MiUsuario.IdUsuario = 1;
 
-                Traslado();
+                //TODO. crear un reporte de la compra. 
 
-                //a este punto tenemos armado completamente el objeto de compra local. 
-                //se puede proceder a la función de agregar. 
-
-                if (MiTomaFisicaLocal.Agregar())
-                {
-                    MessageBox.Show("Inventario actualizado correctamente!!", ":)", MessageBoxButtons.OK);
-
-                    //TODO. crear un reporte de la compra. 
-
-                    LimpiarForm();
-
-                }
+                LimpiarForm();
+                LimpiarColumnaCantidad();
 
             }
+
+            //}
 
         }
 
@@ -141,78 +149,117 @@ namespace PracticaProfesionalJoselinM01.Formularios
             //MiCompraLocal 
             foreach (DataRow fila in ListaProducto.Rows)
             {
-                TomaFisicaDetalle nuevodetalle = new TomaFisicaDetalle();
 
-                nuevodetalle.MiProducto.IdProducto = Convert.ToInt32(fila["idProducto"]);
-                nuevodetalle.StockAnterior = Convert.ToInt32(fila["stock"]);
-                nuevodetalle.CantidadFisica = Convert.ToInt32(fila["cantidad"]);
-                nuevodetalle.Diferencia = Convert.ToInt32(fila["diferencia"]);
+                if (int.TryParse(fila["cantidad"].ToString(), out _))
+                {
+
+                    int cantidad = Convert.ToInt32(fila["cantidad"]);
 
 
-                //una vez tenemos los datos en el nuevodetalle se agrega ese objeto a la lista
-                //de detalles de la compra local 
-                MiTomaFisicaLocal.ListaDetalles.Add(nuevodetalle);
+                    if (cantidad>0)
+                    {
+
+                        TomaFisicaDetalle nuevodetalle = new TomaFisicaDetalle();
+
+                        nuevodetalle.MiProducto.IdProducto = Convert.ToInt32(fila["idProducto"]);
+                        nuevodetalle.StockAnterior = Convert.ToInt32(fila["stock"]);
+                        nuevodetalle.CantidadFisica = Convert.ToInt32(fila["cantidad"]);
+                        nuevodetalle.Diferencia = Convert.ToInt32(fila["diferencia"]);
+
+
+                        //una vez tenemos los datos en el nuevodetalle se agrega ese objeto a la lista
+                        //de detalles de la toma fisica local
+                        MiTomaFisicaLocal.ListaDetalles.Add(nuevodetalle);
+
+                    }
+
+                }
+
+
+
+
 
 
 
             }
         }
 
-      
 
-        private bool ValoresValidos()
+
+        //private bool ValoresValidos()
+        //{
+        //    foreach (DataGridViewRow row in DgLista.Rows)
+        //    {
+        //        object valorCelda = row.Cells["Ccantidad"].Value;
+        //        if (valorCelda == null || !int.TryParse(valorCelda.ToString(), out _))
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
+
+
+        private void LimpiarColumnaCantidad()
         {
-            foreach (DataGridViewRow row in DgLista.Rows)
+            foreach (DataRow row in ListaProducto.Rows)
             {
-                object valorCelda = row.Cells["Ccantidad"].Value;
-                if (valorCelda == null || !int.TryParse(valorCelda.ToString(), out _))
+                // Verifica si la columna "cantidad" no es nula y la establece en DBNull.Value
+                if (row["cantidad"] != DBNull.Value)
                 {
-                    return false;
+                    row["cantidad"] = DBNull.Value;
+                }
+
+                // Verifica si la columna "diferencia" no es nula y la establece en DBNull.Value
+                if (row["diferencia"] != DBNull.Value)
+                {
+                    row["diferencia"] = DBNull.Value;
                 }
             }
-            return true;
         }
-
 
         private void LimpiarForm()
         {
             TxtNotas.Clear();
-            
-       
 
+            MiTomaFisicaLocal = new TomaFisica();
+
+            MiProductoLocal = new Logica.Models.Producto();
 
             ListaProducto = new DataTable();
 
-            DgLista.DataSource = ListaProducto;
+            CargarListaProductos();
 
 
-        }
-
-
-        private bool ValidarAgregar()
-            {
-                bool R = false;
-
-            if (ValoresValidos())
-                
-            {
-                R = true;
-            }
-            else
-            {
-
-                if (ValoresValidos())
-                {
-                    MessageBox.Show("Todos los valores en la columna 'Cantidad' deben ser enteros válidos", "Error de validación", MessageBoxButtons.OK);
-                    return false;
-                }
-
-
-            }
-
-                return R;
 
         }
-        
+
+
+        //private bool ValidarAgregar()
+        //    {
+        //        bool R = false;
+
+        //    if (ValoresValidos())
+
+        //    {
+        //        R = true;
+        //    }
+        //    else
+        //    {
+
+        //        if (ValoresValidos())
+        //        {
+        //            MessageBox.Show("Todos los valores en la columna 'Cantidad' deben ser enteros válidos", "Error de validación", MessageBoxButtons.OK);
+        //            return false;
+        //        }
+
+
+        //    }
+
+        //        return R;
+
+        //}
+
+
     }
 }

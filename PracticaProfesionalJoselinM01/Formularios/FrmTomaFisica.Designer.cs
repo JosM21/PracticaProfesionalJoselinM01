@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fechaCompra = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtNotas = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.Cstock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ccantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cdiferencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaCompra = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgLista)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +60,13 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Toma Fisica";
+            // 
+            // fechaCompra
+            // 
+            this.fechaCompra.Location = new System.Drawing.Point(107, 45);
+            this.fechaCompra.Name = "fechaCompra";
+            this.fechaCompra.Size = new System.Drawing.Size(374, 30);
+            this.fechaCompra.TabIndex = 19;
             // 
             // label1
             // 
@@ -150,7 +157,7 @@
             this.CfkIdProducto.MinimumWidth = 6;
             this.CfkIdProducto.Name = "CfkIdProducto";
             this.CfkIdProducto.ReadOnly = true;
-            this.CfkIdProducto.Width = 125;
+            this.CfkIdProducto.Width = 85;
             // 
             // CnombreProducto
             // 
@@ -168,17 +175,17 @@
             this.Cstock.MinimumWidth = 6;
             this.Cstock.Name = "Cstock";
             this.Cstock.ReadOnly = true;
-            this.Cstock.Width = 125;
+            this.Cstock.Width = 85;
             // 
             // Ccantidad
             // 
             this.Ccantidad.DataPropertyName = "cantidad";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Ccantidad.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.Ccantidad.DefaultCellStyle = dataGridViewCellStyle1;
             this.Ccantidad.HeaderText = "Cantidad";
             this.Ccantidad.MinimumWidth = 6;
             this.Ccantidad.Name = "Ccantidad";
-            this.Ccantidad.Width = 125;
+            this.Ccantidad.Width = 85;
             // 
             // Cdiferencia
             // 
@@ -187,14 +194,7 @@
             this.Cdiferencia.MinimumWidth = 6;
             this.Cdiferencia.Name = "Cdiferencia";
             this.Cdiferencia.ReadOnly = true;
-            this.Cdiferencia.Width = 125;
-            // 
-            // fechaCompra
-            // 
-            this.fechaCompra.Location = new System.Drawing.Point(107, 45);
-            this.fechaCompra.Name = "fechaCompra";
-            this.fechaCompra.Size = new System.Drawing.Size(374, 30);
-            this.fechaCompra.TabIndex = 19;
+            this.Cdiferencia.Width = 85;
             // 
             // FrmTomaFisica
             // 
@@ -226,11 +226,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView DgLista;
+        private System.Windows.Forms.DateTimePicker fechaCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn CfkIdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CnombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cstock;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ccantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cdiferencia;
-        private System.Windows.Forms.DateTimePicker fechaCompra;
     }
 }

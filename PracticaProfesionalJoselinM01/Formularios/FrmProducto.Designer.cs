@@ -48,15 +48,15 @@
             this.BtnModificar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.DgLista = new System.Windows.Forms.DataGridView();
-            this.CBoxVerActivos = new System.Windows.Forms.CheckBox();
-            this.TxtBuscar = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.CidProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CnombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cstock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CdescripcionCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CdescripcionMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CnombreProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CBoxVerActivos = new System.Windows.Forms.CheckBox();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgLista)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +93,8 @@
             this.TxtStock.Name = "TxtStock";
             this.TxtStock.Size = new System.Drawing.Size(354, 27);
             this.TxtStock.TabIndex = 14;
+            this.TxtStock.Text = "0";
+            this.TxtStock.TextChanged += new System.EventHandler(this.TxtStock_TextChanged);
             // 
             // label6
             // 
@@ -304,6 +306,60 @@
             this.DgLista.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgLista_CellClick);
             this.DgLista.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgLista_DataBindingComplete);
             // 
+            // CidProducto
+            // 
+            this.CidProducto.DataPropertyName = "idProducto";
+            this.CidProducto.HeaderText = "Código";
+            this.CidProducto.MinimumWidth = 6;
+            this.CidProducto.Name = "CidProducto";
+            this.CidProducto.ReadOnly = true;
+            this.CidProducto.Width = 125;
+            // 
+            // CnombreProducto
+            // 
+            this.CnombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CnombreProducto.DataPropertyName = "nombreProducto";
+            this.CnombreProducto.HeaderText = "Nombre";
+            this.CnombreProducto.MinimumWidth = 6;
+            this.CnombreProducto.Name = "CnombreProducto";
+            this.CnombreProducto.ReadOnly = true;
+            // 
+            // Cstock
+            // 
+            this.Cstock.DataPropertyName = "stock";
+            this.Cstock.HeaderText = "Stock";
+            this.Cstock.MinimumWidth = 6;
+            this.Cstock.Name = "Cstock";
+            this.Cstock.ReadOnly = true;
+            this.Cstock.Width = 125;
+            // 
+            // CdescripcionCategoria
+            // 
+            this.CdescripcionCategoria.DataPropertyName = "descripcionCategoria";
+            this.CdescripcionCategoria.HeaderText = "Categoria";
+            this.CdescripcionCategoria.MinimumWidth = 6;
+            this.CdescripcionCategoria.Name = "CdescripcionCategoria";
+            this.CdescripcionCategoria.ReadOnly = true;
+            this.CdescripcionCategoria.Width = 125;
+            // 
+            // CdescripcionMarca
+            // 
+            this.CdescripcionMarca.DataPropertyName = "descripcionMarca";
+            this.CdescripcionMarca.HeaderText = "Marca";
+            this.CdescripcionMarca.MinimumWidth = 6;
+            this.CdescripcionMarca.Name = "CdescripcionMarca";
+            this.CdescripcionMarca.ReadOnly = true;
+            this.CdescripcionMarca.Width = 125;
+            // 
+            // CnombreProveedor
+            // 
+            this.CnombreProveedor.DataPropertyName = "nombreProveedor";
+            this.CnombreProveedor.HeaderText = "Proveedor";
+            this.CnombreProveedor.MinimumWidth = 6;
+            this.CnombreProveedor.Name = "CnombreProveedor";
+            this.CnombreProveedor.ReadOnly = true;
+            this.CnombreProveedor.Width = 125;
+            // 
             // CBoxVerActivos
             // 
             this.CBoxVerActivos.AutoSize = true;
@@ -338,58 +394,6 @@
             this.label1.Size = new System.Drawing.Size(73, 25);
             this.label1.TabIndex = 26;
             this.label1.Text = "Buscar";
-            // 
-            // CidProducto
-            // 
-            this.CidProducto.DataPropertyName = "idProducto";
-            this.CidProducto.HeaderText = "Código";
-            this.CidProducto.MinimumWidth = 6;
-            this.CidProducto.Name = "CidProducto";
-            this.CidProducto.ReadOnly = true;
-            // 
-            // CnombreProducto
-            // 
-            this.CnombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CnombreProducto.DataPropertyName = "nombreProducto";
-            this.CnombreProducto.HeaderText = "Nombre";
-            this.CnombreProducto.MinimumWidth = 6;
-            this.CnombreProducto.Name = "CnombreProducto";
-            this.CnombreProducto.ReadOnly = true;
-            // 
-            // Cstock
-            // 
-            this.Cstock.DataPropertyName = "stock";
-            this.Cstock.HeaderText = "Stock";
-            this.Cstock.MinimumWidth = 6;
-            this.Cstock.Name = "Cstock";
-            this.Cstock.ReadOnly = true;
-            // 
-            // CdescripcionCategoria
-            // 
-            this.CdescripcionCategoria.DataPropertyName = "descripcionCategoria";
-            this.CdescripcionCategoria.HeaderText = "Categoria";
-            this.CdescripcionCategoria.MinimumWidth = 6;
-            this.CdescripcionCategoria.Name = "CdescripcionCategoria";
-            this.CdescripcionCategoria.ReadOnly = true;
-            this.CdescripcionCategoria.Width = 125;
-            // 
-            // CdescripcionMarca
-            // 
-            this.CdescripcionMarca.DataPropertyName = "descripcionMarca";
-            this.CdescripcionMarca.HeaderText = "Marca";
-            this.CdescripcionMarca.MinimumWidth = 6;
-            this.CdescripcionMarca.Name = "CdescripcionMarca";
-            this.CdescripcionMarca.ReadOnly = true;
-            this.CdescripcionMarca.Width = 125;
-            // 
-            // CnombreProveedor
-            // 
-            this.CnombreProveedor.DataPropertyName = "nombreProveedor";
-            this.CnombreProveedor.HeaderText = "Proveedor";
-            this.CnombreProveedor.MinimumWidth = 6;
-            this.CnombreProveedor.Name = "CnombreProveedor";
-            this.CnombreProveedor.ReadOnly = true;
-            this.CnombreProveedor.Width = 125;
             // 
             // FrmProducto
             // 
