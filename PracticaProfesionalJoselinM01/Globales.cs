@@ -25,6 +25,8 @@ namespace PracticaProfesionalJoselinM01
 
         public static Logica.Models.Usuario MiUsuarioGlobal = new Logica.Models.Usuario(); 
 
+        public static Formularios.FrmMostrarTomasFisicas MiFormMostrarTomaFisica = new Formularios.FrmMostrarTomasFisicas();
+
         
     }
 }

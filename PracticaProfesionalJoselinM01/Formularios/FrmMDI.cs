@@ -138,7 +138,12 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            if (!Globales.MiFormMostrarTomaFisica.Visible)
+            {
+                Globales.MiFormMostrarTomaFisica = new FrmMostrarTomasFisicas();
+                Globales.MiFormMostrarTomaFisica.Show();
+
+            }
 
 
         }
