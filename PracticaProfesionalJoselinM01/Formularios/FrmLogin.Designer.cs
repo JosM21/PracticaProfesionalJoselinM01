@@ -159,7 +159,6 @@
             this.linkPass.TabIndex = 0;
             this.linkPass.TabStop = true;
             this.linkPass.Text = "¿Ha olvidado la contraseña??";
-            this.linkPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPass_LinkClicked);
             // 
             // pictureBoxCerrar
             // 

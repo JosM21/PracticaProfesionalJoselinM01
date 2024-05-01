@@ -15,14 +15,21 @@ namespace PracticaProfesionalJoselinM01.Formularios
         public FrmMostrarTomasFisicas()
         {
             InitializeComponent();
+            MdiParent = Globales.MiFormPrincipal;
+
         }
+
+  
+
+
+
 
         private void FrmMostrarTomasFisicas_Load(object sender, EventArgs e)
         {
-            MdiParent = Globales.MiFormPrincipal;
+
         }
 
-        private void CrystalReport11_InitReport(object sender, EventArgs e)
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
 
         }

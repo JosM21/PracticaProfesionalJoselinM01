@@ -201,7 +201,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(758, 636);
+            this.ClientSize = new System.Drawing.Size(756, 636);
             this.Controls.Add(this.DgLista);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnAgregar);

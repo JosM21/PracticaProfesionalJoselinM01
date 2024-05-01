@@ -59,12 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Reportes\CrystalReport1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Formularios\FrmMostrarTomasFisicas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,12 +101,6 @@
     <Compile Include="Formularios\FrmProveedor.Designer.cs">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\FrmRecuperacionContrasennia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\FrmRecuperacionContrasennia.Designer.cs">
-      <DependentUpon>FrmRecuperacionContrasennia.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\FrmTomaFisica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,11 +117,13 @@
     <Compile Include="Herramientas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\TomasFisicas1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TomasFisicas1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Validaciones.cs" />
-    <EmbeddedResource Include="Reportes\CrystalReport1.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmMostrarTomasFisicas.resx">
       <DependentUpon>FrmMostrarTomasFisicas.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,9 +145,6 @@
     <EmbeddedResource Include="Formularios\FrmProveedor.resx">
       <DependentUpon>FrmProveedor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\FrmRecuperacionContrasennia.resx">
-      <DependentUpon>FrmRecuperacionContrasennia.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmTomaFisica.resx">
       <DependentUpon>FrmTomaFisica.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +160,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reportes\TomasFisicas1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TomasFisicas1.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

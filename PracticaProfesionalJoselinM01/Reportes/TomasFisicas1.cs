@@ -16,14 +16,14 @@ namespace PracticaProfesionalJoselinM01.Reportes {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class TomasFisicas1 : ReportClass {
         
-        public CrystalReport1() {
+        public TomasFisicas1() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "TomasFisicas1.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PracticaProfesionalJoselinM01.Reportes {
         
         public override string FullResourceName {
             get {
-                return "PracticaProfesionalJoselinM01.Reportes.CrystalReport1.rpt";
+                return "PracticaProfesionalJoselinM01.Reportes.TomasFisicas1.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace PracticaProfesionalJoselinM01.Reportes {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedTomasFisicas1 : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedTomasFisicas1() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace PracticaProfesionalJoselinM01.Reportes {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            TomasFisicas1 rpt = new TomasFisicas1();
             rpt.Site = this.Site;
             return rpt;
         }

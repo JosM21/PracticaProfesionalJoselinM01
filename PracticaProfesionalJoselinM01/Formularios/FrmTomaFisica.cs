@@ -1,4 +1,5 @@
-﻿using Logica.Models;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Logica.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -129,13 +130,25 @@ namespace PracticaProfesionalJoselinM01.Formularios
             {
                 MessageBox.Show("Inventario actualizado correctamente!!", ":)", MessageBoxButtons.OK);
 
+                ReportDocument MiReporteTomaFisica = new ReportDocument();
 
+                MiReporteTomaFisica = new Reportes.TomasFisicas1();
 
+                MiReporteTomaFisica = MiTomaFisicaLocal.Imprimir(MiReporteTomaFisica);
 
-                //TODO. crear un reporte de la compra. 
+                FrmMostrarTomasFisicas MostrarTomasFisicas = new FrmMostrarTomasFisicas();
+
+                MostrarTomasFisicas.RptMostrarTomasFisicas.ReportSource = MiReporteTomaFisica;
+
+                MostrarTomasFisicas.Show();
+
+                MostrarTomasFisicas.RptMostrarTomasFisicas.Zoom(1);
+
 
                 LimpiarForm();
                 LimpiarColumnaCantidad();
+
+
 
             }
 

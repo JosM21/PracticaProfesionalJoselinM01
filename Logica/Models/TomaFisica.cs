@@ -1,4 +1,5 @@
-﻿using Logica.Services;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Logica.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,6 +31,37 @@ namespace Logica.Models
         {
             MiUsuario = new Usuario();
             ListaDetalles = new List<TomaFisicaDetalle>();
+
+        }
+
+        public ReportDocument Imprimir (ReportDocument document)
+        {
+          
+            ReportDocument R = document;
+
+            CrystalReport Objcrystal = new CrystalReport(R);
+
+            DataTable Dt = new DataTable();
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdTomaFisica));
+
+
+
+            Dt = MiCnn.EjecutarSELECT("SPTomaFisicaReporte");
+
+            if (Dt != null && Dt.Rows.Count > 0)
+            {
+                Objcrystal.dt = Dt;
+
+                R = Objcrystal.GenerarReporte();
+            }
+            
+
+            return R;
+
+            
 
         }
 
