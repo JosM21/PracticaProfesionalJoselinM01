@@ -44,7 +44,6 @@
             this.RptMostrarTomasFisicas.Size = new System.Drawing.Size(800, 450);
             this.RptMostrarTomasFisicas.TabIndex = 0;
             this.RptMostrarTomasFisicas.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.RptMostrarTomasFisicas.Load += new System.EventHandler(this.crystalReportViewer1_Load);
             // 
             // FrmMostrarTomasFisicas
             // 

@@ -19,17 +19,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         }
 
-  
-
-
-
-
         private void FrmMostrarTomasFisicas_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
 
         }

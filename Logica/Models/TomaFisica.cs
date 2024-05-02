@@ -47,8 +47,6 @@ namespace Logica.Models
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.IdTomaFisica));
 
-
-
             Dt = MiCnn.EjecutarSELECT("SPTomaFisicaReporte");
 
             if (Dt != null && Dt.Rows.Count > 0)

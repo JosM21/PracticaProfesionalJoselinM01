@@ -37,7 +37,6 @@
             this.TxtContrasennia = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnAcceder = new System.Windows.Forms.Button();
-            this.linkPass = new System.Windows.Forms.LinkLabel();
             this.pictureBoxCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBoxMinimizar = new System.Windows.Forms.PictureBox();
             this.BtnIngresoDirecto = new System.Windows.Forms.Button();
@@ -147,19 +146,6 @@
             this.BtnAcceder.UseVisualStyleBackColor = false;
             this.BtnAcceder.Click += new System.EventHandler(this.BtnAcceder_Click_1);
             // 
-            // linkPass
-            // 
-            this.linkPass.ActiveLinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.linkPass.AutoSize = true;
-            this.linkPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkPass.LinkColor = System.Drawing.Color.DimGray;
-            this.linkPass.Location = new System.Drawing.Point(387, 275);
-            this.linkPass.Name = "linkPass";
-            this.linkPass.Size = new System.Drawing.Size(231, 20);
-            this.linkPass.TabIndex = 0;
-            this.linkPass.TabStop = true;
-            this.linkPass.Text = "¿Ha olvidado la contraseña??";
-            // 
             // pictureBoxCerrar
             // 
             this.pictureBoxCerrar.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCerrar.Image")));
@@ -208,7 +194,6 @@
             this.Controls.Add(this.BtnIngresoDirecto);
             this.Controls.Add(this.pictureBoxMinimizar);
             this.Controls.Add(this.pictureBoxCerrar);
-            this.Controls.Add(this.linkPass);
             this.Controls.Add(this.BtnAcceder);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TxtContrasennia);
@@ -239,7 +224,6 @@
         private System.Windows.Forms.TextBox TxtContrasennia;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnAcceder;
-        private System.Windows.Forms.LinkLabel linkPass;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBoxCerrar;
         private System.Windows.Forms.PictureBox pictureBoxMinimizar;
