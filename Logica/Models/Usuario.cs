@@ -40,7 +40,7 @@ namespace Logica.Models
 
             Conexion MiCnn = new Conexion();
 
-            MiCnn.ListaDeParametros.Add(new SqlParameter("@nombre", this.Email));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@nombre", this.Nombre));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@email", Email));
 
             Crypto MiEncriptador = new Crypto();

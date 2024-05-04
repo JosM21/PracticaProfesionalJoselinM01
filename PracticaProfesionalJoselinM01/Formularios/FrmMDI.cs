@@ -73,18 +73,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         }
 
-        private void MarcasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            if (!Globales.MiFormMarca.Visible)
-            {
-                Globales.MiFormMarca = new FrmMarca();
-                Globales.MiFormMarca.Show();
-
-            }
-
-
-        }
+        
 
         private void FrmMDI_Load(object sender, EventArgs e)
         {
@@ -104,7 +93,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
                     break;
                 case 2:
                     usuariosToolStripMenuItem.Visible = false;
-                    reportesToolStripMenuItem.Visible = false;
+                    
 
                     break;
             }
@@ -136,8 +125,10 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
         }
 
-        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void tomasFisicasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             if (!Globales.MiFormMostrarTomaFisica.Visible)
             {
                 Globales.MiFormMostrarTomaFisica = new FrmMostrarTomasFisicas();
@@ -145,6 +136,20 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
             }
 
+        }
+
+        private void MarcasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MnuAyuda_Click(object sender, EventArgs e)
+        {
 
         }
     }

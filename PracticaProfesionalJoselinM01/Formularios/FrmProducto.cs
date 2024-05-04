@@ -35,7 +35,6 @@ namespace PracticaProfesionalJoselinM01.Formularios
             MdiParent = Globales.MiFormPrincipal;
 
             CargarListaCategorias();
-            CargarListaMarcas();
             CargarListaProveedores();
             CargarListaProducto();
             ActivarAgregar();
@@ -93,28 +92,7 @@ namespace PracticaProfesionalJoselinM01.Formularios
             }
         }
 
-        private void CargarListaMarcas()
-        {
-
-
-            Logica.Models.Marca MiMarca = new Logica.Models.Marca();
-
-            DataTable Dt = new DataTable();
-
-            Dt = MiMarca.Listar();
-
-
-
-            if (Dt != null && Dt.Rows.Count > 0)
-            {
-                CbMarca.ValueMember = "ID";
-                CbMarca.DisplayMember = "Descripcion";
-                CbMarca.DataSource = Dt;
-                CbMarca.SelectedIndex = -1;
-
-
-            }
-        }
+       
 
         private void CargarListaProveedores()
         {
@@ -188,7 +166,6 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
 
                     CbCategoria.SelectedValue = MiProductoLocal.MiCategoria.IdCategoria;
-                    CbMarca.SelectedValue = MiProductoLocal.MiMarca.IdMarca;
                     CbProveedor.SelectedValue = MiProductoLocal.MiProveedor.IdProveedor;
 
                     ActivarEditarEliminar();
@@ -213,7 +190,6 @@ namespace PracticaProfesionalJoselinM01.Formularios
             TxtStock.Clear();
 
             CbCategoria.SelectedIndex = -1;
-            CbMarca.SelectedIndex = -1;
             CbProveedor.SelectedIndex = -1;
         }
 
@@ -229,7 +205,6 @@ namespace PracticaProfesionalJoselinM01.Formularios
               
 
                 CbCategoria.SelectedIndex > -1 &&
-                 CbMarca.SelectedIndex > -1 &&
                  CbProveedor.SelectedIndex > -1)
 
 
@@ -263,12 +238,6 @@ namespace PracticaProfesionalJoselinM01.Formularios
                     return false;
                 }
 
-                if (CbMarca.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Debe digitar una marca valida", "Error de validacion", MessageBoxButtons.OK);
-                    CbMarca.Focus();
-                    return false;
-                }
 
                 if (CbProveedor.SelectedIndex == -1)
                 {
@@ -304,7 +273,6 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
                 //composiciones
                 MiProductoLocal.MiCategoria.IdCategoria = Convert.ToInt32(CbCategoria.SelectedValue);
-                MiProductoLocal.MiMarca.IdMarca = Convert.ToInt32(CbMarca.SelectedValue);
                 MiProductoLocal.MiProveedor.IdProveedor = Convert.ToInt32(CbProveedor.SelectedValue);
 
 
@@ -368,7 +336,6 @@ namespace PracticaProfesionalJoselinM01.Formularios
 
 
                 MiProductoLocal.MiCategoria.IdCategoria = Convert.ToInt32(CbCategoria.SelectedValue);
-                MiProductoLocal.MiMarca.IdMarca = Convert.ToInt32(CbMarca.SelectedValue);
                 MiProductoLocal.MiProveedor.IdProveedor = Convert.ToInt32(CbProveedor.SelectedValue);
 
 

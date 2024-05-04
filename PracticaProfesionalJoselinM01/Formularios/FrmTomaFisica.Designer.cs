@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTomaFisica));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.fechaCompra = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -180,8 +181,8 @@
             // Ccantidad
             // 
             this.Ccantidad.DataPropertyName = "cantidad";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Ccantidad.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.Ccantidad.DefaultCellStyle = dataGridViewCellStyle3;
             this.Ccantidad.HeaderText = "Cantidad";
             this.Ccantidad.MinimumWidth = 6;
             this.Ccantidad.Name = "Ccantidad";
@@ -206,9 +207,12 @@
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmTomaFisica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmTomaFisica";
+            this.Text = "Gestion de Toma Fisica";
             this.Load += new System.EventHandler(this.FrmTomaFisica_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

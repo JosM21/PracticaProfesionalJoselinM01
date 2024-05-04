@@ -39,7 +39,6 @@
             this.BtnAcceder = new System.Windows.Forms.Button();
             this.pictureBoxCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBoxMinimizar = new System.Windows.Forms.PictureBox();
-            this.BtnIngresoDirecto = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCerrar)).BeginInit();
@@ -168,30 +167,12 @@
             this.pictureBoxMinimizar.TabStop = false;
             this.pictureBoxMinimizar.Click += new System.EventHandler(this.pictureBoxMinimizar_Click);
             // 
-            // BtnIngresoDirecto
-            // 
-            this.BtnIngresoDirecto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.BtnIngresoDirecto.FlatAppearance.BorderSize = 0;
-            this.BtnIngresoDirecto.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.BtnIngresoDirecto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BtnIngresoDirecto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnIngresoDirecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnIngresoDirecto.ForeColor = System.Drawing.Color.LightGray;
-            this.BtnIngresoDirecto.Location = new System.Drawing.Point(332, 194);
-            this.BtnIngresoDirecto.Name = "BtnIngresoDirecto";
-            this.BtnIngresoDirecto.Size = new System.Drawing.Size(120, 36);
-            this.BtnIngresoDirecto.TabIndex = 18;
-            this.BtnIngresoDirecto.Text = "ACCEDER";
-            this.BtnIngresoDirecto.UseVisualStyleBackColor = false;
-            this.BtnIngresoDirecto.Click += new System.EventHandler(this.BtnIngresoDirecto_Click);
-            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(780, 330);
-            this.Controls.Add(this.BtnIngresoDirecto);
             this.Controls.Add(this.pictureBoxMinimizar);
             this.Controls.Add(this.pictureBoxCerrar);
             this.Controls.Add(this.BtnAcceder);
@@ -227,6 +208,5 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBoxCerrar;
         private System.Windows.Forms.PictureBox pictureBoxMinimizar;
-        private System.Windows.Forms.Button BtnIngresoDirecto;
     }
 }

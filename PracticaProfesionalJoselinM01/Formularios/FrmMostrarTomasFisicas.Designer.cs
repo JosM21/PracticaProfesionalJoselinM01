@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMostrarTomasFisicas));
             this.RptMostrarTomasFisicas = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.TomasFisicas11 = new PracticaProfesionalJoselinM01.Reportes.TomasFisicas1();
             this.SuspendLayout();
@@ -41,7 +42,7 @@
             this.RptMostrarTomasFisicas.Location = new System.Drawing.Point(0, 0);
             this.RptMostrarTomasFisicas.Name = "RptMostrarTomasFisicas";
             this.RptMostrarTomasFisicas.ReportSource = this.TomasFisicas11;
-            this.RptMostrarTomasFisicas.Size = new System.Drawing.Size(800, 450);
+            this.RptMostrarTomasFisicas.Size = new System.Drawing.Size(1087, 770);
             this.RptMostrarTomasFisicas.TabIndex = 0;
             this.RptMostrarTomasFisicas.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -49,12 +50,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1087, 770);
             this.Controls.Add(this.RptMostrarTomasFisicas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmMostrarTomasFisicas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmTomasFisicas";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "TomasFisicas";
             this.Load += new System.EventHandler(this.FrmMostrarTomasFisicas_Load);
             this.ResumeLayout(false);
 

@@ -19,13 +19,13 @@ namespace Logica.Models
         //composicion 
 
         public Categoria MiCategoria { get; set; }
-        public Marca MiMarca { get; set; }
+       
         public Proveedor MiProveedor { get; set; }
 
         public Producto()
         {
             MiCategoria = new Categoria();
-            MiMarca = new Marca();
+           
             MiProveedor = new Proveedor();  
         }
 
@@ -120,8 +120,7 @@ namespace Logica.Models
                 R.MiCategoria.DescripcionCategoria = Convert.ToString(dr["descripcionCategoria"]);
 
 
-                R.MiMarca.IdMarca = Convert.ToInt32(dr["idMarca"]);
-                R.MiMarca.DescripcionMarca = Convert.ToString(dr["descripcionMarca"]);
+
 
 
                 R.MiProveedor.IdProveedor = Convert.ToInt32(dr["idProveedor"]);
@@ -170,7 +169,6 @@ namespace Logica.Models
 
             //composiciones
             MiCnn.ListaDeParametros.Add(new SqlParameter("@categoria", this.MiCategoria.IdCategoria));
-            MiCnn.ListaDeParametros.Add(new SqlParameter("@marca", this.MiMarca.IdMarca));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@proveedor", this.MiProveedor.IdProveedor));
 
 
@@ -202,7 +200,6 @@ namespace Logica.Models
 
             //composiciones
             MiCnn.ListaDeParametros.Add(new SqlParameter("@categoria", this.MiCategoria.IdCategoria));
-            MiCnn.ListaDeParametros.Add(new SqlParameter("@marca", this.MiMarca.IdMarca));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@proveedor", this.MiProveedor.IdProveedor));
 
 

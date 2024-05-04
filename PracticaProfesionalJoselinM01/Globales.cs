@@ -17,7 +17,6 @@ namespace PracticaProfesionalJoselinM01
 
         public static Formularios.FrmCategoria MiFormCategoria = new Formularios.FrmCategoria();
 
-        public static Formularios.FrmMarca MiFormMarca = new Formularios.FrmMarca();
 
         public static Formularios.FrmTomaFisica MiFormTomaFisica = new Formularios.FrmTomaFisica();
 

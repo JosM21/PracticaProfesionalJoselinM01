@@ -29,15 +29,14 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducto));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtStock = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.CbProveedor = new System.Windows.Forms.ComboBox();
-            this.CbMarca = new System.Windows.Forms.ComboBox();
             this.CbCategoria = new System.Windows.Forms.ComboBox();
             this.TxtProductoNombre = new System.Windows.Forms.TextBox();
             this.TxtProductoID = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,7 +51,6 @@
             this.CnombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cstock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CdescripcionCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdescripcionMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CnombreProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CBoxVerActivos = new System.Windows.Forms.CheckBox();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
@@ -66,11 +64,9 @@
             this.groupBox1.Controls.Add(this.TxtStock);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.CbProveedor);
-            this.groupBox1.Controls.Add(this.CbMarca);
             this.groupBox1.Controls.Add(this.CbCategoria);
             this.groupBox1.Controls.Add(this.TxtProductoNombre);
             this.groupBox1.Controls.Add(this.TxtProductoID);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -89,7 +85,7 @@
             this.TxtStock.BackColor = System.Drawing.Color.White;
             this.TxtStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtStock.ForeColor = System.Drawing.Color.Black;
-            this.TxtStock.Location = new System.Drawing.Point(706, 126);
+            this.TxtStock.Location = new System.Drawing.Point(706, 84);
             this.TxtStock.Name = "TxtStock";
             this.TxtStock.Size = new System.Drawing.Size(354, 27);
             this.TxtStock.TabIndex = 14;
@@ -99,7 +95,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(584, 129);
+            this.label6.Location = new System.Drawing.Point(584, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 25);
             this.label6.TabIndex = 13;
@@ -110,20 +106,10 @@
             this.CbProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbProveedor.FormattingEnabled = true;
-            this.CbProveedor.Location = new System.Drawing.Point(706, 82);
+            this.CbProveedor.Location = new System.Drawing.Point(706, 40);
             this.CbProveedor.Name = "CbProveedor";
             this.CbProveedor.Size = new System.Drawing.Size(354, 28);
             this.CbProveedor.TabIndex = 12;
-            // 
-            // CbMarca
-            // 
-            this.CbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbMarca.FormattingEnabled = true;
-            this.CbMarca.Location = new System.Drawing.Point(706, 40);
-            this.CbMarca.Name = "CbMarca";
-            this.CbMarca.Size = new System.Drawing.Size(354, 28);
-            this.CbMarca.TabIndex = 11;
             // 
             // CbCategoria
             // 
@@ -157,19 +143,10 @@
             this.TxtProductoID.Size = new System.Drawing.Size(371, 27);
             this.TxtProductoID.TabIndex = 8;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(588, 40);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 25);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Marca:";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(587, 81);
+            this.label4.Location = new System.Drawing.Point(587, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 25);
             this.label4.TabIndex = 3;
@@ -208,7 +185,7 @@
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCancelar.ForeColor = System.Drawing.Color.White;
-            this.BtnCancelar.Location = new System.Drawing.Point(937, 244);
+            this.BtnCancelar.Location = new System.Drawing.Point(938, 553);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(204, 50);
             this.BtnCancelar.TabIndex = 34;
@@ -222,7 +199,7 @@
             this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.BtnLimpiar.Location = new System.Drawing.Point(711, 244);
+            this.BtnLimpiar.Location = new System.Drawing.Point(712, 553);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(204, 50);
             this.BtnLimpiar.TabIndex = 33;
@@ -236,7 +213,7 @@
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEliminar.ForeColor = System.Drawing.Color.White;
-            this.BtnEliminar.Location = new System.Drawing.Point(490, 244);
+            this.BtnEliminar.Location = new System.Drawing.Point(491, 553);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(204, 50);
             this.BtnEliminar.TabIndex = 32;
@@ -250,7 +227,7 @@
             this.BtnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnModificar.ForeColor = System.Drawing.Color.White;
-            this.BtnModificar.Location = new System.Drawing.Point(267, 244);
+            this.BtnModificar.Location = new System.Drawing.Point(268, 553);
             this.BtnModificar.Name = "BtnModificar";
             this.BtnModificar.Size = new System.Drawing.Size(205, 50);
             this.BtnModificar.TabIndex = 31;
@@ -264,7 +241,7 @@
             this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAgregar.ForeColor = System.Drawing.Color.White;
-            this.BtnAgregar.Location = new System.Drawing.Point(40, 244);
+            this.BtnAgregar.Location = new System.Drawing.Point(41, 553);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(204, 50);
             this.BtnAgregar.TabIndex = 30;
@@ -291,9 +268,8 @@
             this.CnombreProducto,
             this.Cstock,
             this.CdescripcionCategoria,
-            this.CdescripcionMarca,
             this.CnombreProveedor});
-            this.DgLista.Location = new System.Drawing.Point(37, 327);
+            this.DgLista.Location = new System.Drawing.Point(41, 236);
             this.DgLista.MultiSelect = false;
             this.DgLista.Name = "DgLista";
             this.DgLista.ReadOnly = true;
@@ -342,15 +318,6 @@
             this.CdescripcionCategoria.ReadOnly = true;
             this.CdescripcionCategoria.Width = 125;
             // 
-            // CdescripcionMarca
-            // 
-            this.CdescripcionMarca.DataPropertyName = "descripcionMarca";
-            this.CdescripcionMarca.HeaderText = "Marca";
-            this.CdescripcionMarca.MinimumWidth = 6;
-            this.CdescripcionMarca.Name = "CdescripcionMarca";
-            this.CdescripcionMarca.ReadOnly = true;
-            this.CdescripcionMarca.Width = 125;
-            // 
             // CnombreProveedor
             // 
             this.CnombreProveedor.DataPropertyName = "nombreProveedor";
@@ -367,7 +334,7 @@
             this.CBoxVerActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBoxVerActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBoxVerActivos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.CBoxVerActivos.Location = new System.Drawing.Point(1005, 571);
+            this.CBoxVerActivos.Location = new System.Drawing.Point(1009, 480);
             this.CBoxVerActivos.Name = "CBoxVerActivos";
             this.CBoxVerActivos.Size = new System.Drawing.Size(134, 29);
             this.CBoxVerActivos.TabIndex = 28;
@@ -378,7 +345,7 @@
             // TxtBuscar
             // 
             this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBuscar.Location = new System.Drawing.Point(128, 570);
+            this.TxtBuscar.Location = new System.Drawing.Point(132, 479);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(852, 27);
             this.TxtBuscar.TabIndex = 27;
@@ -389,7 +356,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.LightGray;
-            this.label1.Location = new System.Drawing.Point(36, 571);
+            this.label1.Location = new System.Drawing.Point(40, 480);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 25);
             this.label1.TabIndex = 26;
@@ -411,6 +378,8 @@
             this.Controls.Add(this.CBoxVerActivos);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -429,7 +398,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox TxtProductoNombre;
         private System.Windows.Forms.TextBox TxtProductoID;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
@@ -444,7 +412,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox CbProveedor;
-        private System.Windows.Forms.ComboBox CbMarca;
         private System.Windows.Forms.ComboBox CbCategoria;
         private System.Windows.Forms.TextBox TxtStock;
         private System.Windows.Forms.Label label6;
@@ -452,7 +419,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CnombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cstock;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdescripcionCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CdescripcionMarca;
         private System.Windows.Forms.DataGridViewTextBoxColumn CnombreProveedor;
     }
 }

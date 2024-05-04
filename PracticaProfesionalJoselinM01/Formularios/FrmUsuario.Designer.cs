@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
             this.label1 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.CBoxVerActivos = new System.Windows.Forms.CheckBox();
@@ -69,7 +70,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.LightGray;
-            this.label1.Location = new System.Drawing.Point(40, 583);
+            this.label1.Location = new System.Drawing.Point(39, 500);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 25);
             this.label1.TabIndex = 0;
@@ -77,7 +78,7 @@
             // 
             // TxtBuscar
             // 
-            this.TxtBuscar.Location = new System.Drawing.Point(136, 586);
+            this.TxtBuscar.Location = new System.Drawing.Point(135, 503);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(840, 22);
             this.TxtBuscar.TabIndex = 1;
@@ -90,7 +91,7 @@
             this.CBoxVerActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBoxVerActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBoxVerActivos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.CBoxVerActivos.Location = new System.Drawing.Point(1005, 582);
+            this.CBoxVerActivos.Location = new System.Drawing.Point(1004, 499);
             this.CBoxVerActivos.Name = "CBoxVerActivos";
             this.CBoxVerActivos.Size = new System.Drawing.Size(134, 29);
             this.CBoxVerActivos.TabIndex = 2;
@@ -110,7 +111,7 @@
             this.Ctelefono,
             this.Cemail,
             this.CdescripcionRol});
-            this.DgLista.Location = new System.Drawing.Point(38, 333);
+            this.DgLista.Location = new System.Drawing.Point(37, 250);
             this.DgLista.MultiSelect = false;
             this.DgLista.Name = "DgLista";
             this.DgLista.ReadOnly = true;
@@ -185,7 +186,7 @@
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCancelar.ForeColor = System.Drawing.Color.White;
-            this.BtnCancelar.Location = new System.Drawing.Point(938, 263);
+            this.BtnCancelar.Location = new System.Drawing.Point(939, 561);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(204, 50);
             this.BtnCancelar.TabIndex = 14;
@@ -199,7 +200,7 @@
             this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.BtnLimpiar.Location = new System.Drawing.Point(712, 263);
+            this.BtnLimpiar.Location = new System.Drawing.Point(713, 561);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(204, 50);
             this.BtnLimpiar.TabIndex = 13;
@@ -213,7 +214,7 @@
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEliminar.ForeColor = System.Drawing.Color.White;
-            this.BtnEliminar.Location = new System.Drawing.Point(491, 263);
+            this.BtnEliminar.Location = new System.Drawing.Point(492, 561);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(204, 50);
             this.BtnEliminar.TabIndex = 12;
@@ -227,7 +228,7 @@
             this.BtnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnModificar.ForeColor = System.Drawing.Color.White;
-            this.BtnModificar.Location = new System.Drawing.Point(268, 263);
+            this.BtnModificar.Location = new System.Drawing.Point(269, 561);
             this.BtnModificar.Name = "BtnModificar";
             this.BtnModificar.Size = new System.Drawing.Size(205, 50);
             this.BtnModificar.TabIndex = 11;
@@ -241,7 +242,7 @@
             this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAgregar.ForeColor = System.Drawing.Color.White;
-            this.BtnAgregar.Location = new System.Drawing.Point(41, 263);
+            this.BtnAgregar.Location = new System.Drawing.Point(42, 561);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(204, 50);
             this.BtnAgregar.TabIndex = 10;
@@ -458,7 +459,9 @@
             this.Controls.Add(this.CBoxVerActivos);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion de Usuarios";
